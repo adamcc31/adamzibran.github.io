@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Virality: A Framework for Using AI Prompts to Boost Content Engagement | Adam Zibran</title>
+	<meta name="description" content="A case study on how to empower creative teams with AI without losing the human touch.">
+	<link rel="apple-touch-icon" href="img/logo/iconic.png">
+	<link rel="icon" href="img/logo/iconic.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Styles from original file to ensure consistency */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); padding-top: 60px; }
+        .modal-content { background-color: #ffffff; margin: 5% auto; padding: 30px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 8px; color: #333; position: relative; animation: slide-down 0.4s ease-out; font-family: 'Montserrat', sans-serif; }
+        @keyframes slide-down { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-content h2 { color: #000; font-family: 'Bebas Neue', sans-serif; margin-top: 0; }
+        .modal-content p { line-height: 1.6; }
+        .close-btn { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; }
+        .close-btn:hover, .close-btn:focus { color: black; text-decoration: none; cursor: pointer; }
+		.nicolas_sm_button button { display: inline-block; text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 24px; font-weight: 500; color: #fff; background-color: #333; padding: 20px 40px; border-radius: 50px; border: none; cursor: pointer; outline: none; transition: all .3s ease; }
+	    .nicolas_sm_button button:hover { background-color: #ffa60c; }
+	    .nicolas_sm_button button img { position: relative; top: 2px; margin-left: 10px; vertical-align: middle; }
+        #consent-modal { display: block; }
+        .consent-modal-buttons { text-align: center; margin-top: 25px; }
+        .consent-modal-buttons button { font-family: 'Bebas Neue', sans-serif; font-size: 20px; padding: 15px 30px; border-radius: 30px; border: none; cursor: pointer; margin: 0 10px; transition: all .3s ease; color: #fff; }
+        #accept-rules-btn { background-color: #ffa60c; }
+        #accept-rules-btn:hover { background-color: #e59400; }
+        #decline-rules-btn { background-color: #333; }
+        #decline-rules-btn:hover { background-color: #555; }
+        .modal-content .internal-link { color: #ffa60c; text-decoration: underline; cursor: pointer; }
+        .nicolas_sm_section.case-study-dark-bg { background-color: #1C1C1C; padding-top: 150px; padding-bottom: 50px; }
+        .nicolas_sm_main_title .left span { color: #ffa60c; }
+        .nicolas_sm_main_title .center p { color: #ffffff; }
+        .case-study-content .main-image { margin-top: 40px; margin-bottom: 60px; text-align: center; }
+        .case-study-content .main-image img { max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 8px; }
+        .case-study-content .text-section { max-width: 100%; margin: 0 auto 50px auto; font-family: 'Montserrat', sans-serif; }
+        .case-study-content .text-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #ffa60c; margin-bottom: 20px; }
+        .case-study-content .text-section h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-top: 25px; margin-bottom: 10px; }
+        .case-study-content .text-section p, .case-study-content .text-section li { font-size: 16px; line-height: 1.8; margin-bottom: 15px; color: #E0E0E0; }
+        .case-study-content .text-section ul, .case-study-content .text-section ol { list-style-position: inside; padding-left: 20px;}
+        .case-study-content .text-section img { max-width: 100%; height: auto; display: block; margin: 40px auto; border-radius: 8px; }
+        .case-study-content .text-section blockquote { border-left: 3px solid #ffa60c; padding-left: 20px; margin: 20px 0; font-style: italic; color: #f0f0f0;}
+        .back-to-portfolio { text-align: center; margin-top: 50px; }
+        .back-to-portfolio a { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #fff; background-color: #ffa60c; padding: 20px 40px; border-radius: 50px; text-decoration: none; transition: all .3s ease; }
+        .back-to-portfolio a:hover { background-color: #333; }
+    </style>
+</head>
+<body>
+  
+  	<div id="preloader"><div class="loader_line"></div></div>
+	<div class="nicolas_sm_wrapper_all" data-magic-cursor="show">
+	
+		<div class="nicolas_sa_mobile_menu">
+			<div class="mobile_menu_inner"><div class="mobile_in"><div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="" /></a></div><div class="trigger"><div class="hamburger hamburger--slider"><div class="hamburger-box"><div class="hamburger-inner"></div></div></div></div></div></div>
+			<div class="dropdown"><div class="dropdown_inner"><ul class="anchor_nav">
+				<li><a href="index.html#home">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#service">Skills</a></li><li><a href="index.html#portfolio">Portfolio</a></li><li><a href="index.html#blog">Blog</a></li><li><a href="index.html#footer">Contact</a></li>
+			</ul></div></div>
+		</div>
+		<div class="nicolas_sm_header">
+			<div class="overlay_el"><div class="overlay_bg"><div class="overlay_img"></div><div class="overlay_color"></div></div>
+				<div class="overlay_content">
+					<div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="logo"></a></div>
+					<div class="menu"><ul class="anchor_nav">
+						<li><a href="index.html#home">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#service">Skills</a></li><li><a href="index.html#portfolio">Portfolio</a></li><li><a href="index.html#blog">Blog</a></li><li><a href="index.html#footer">Contact</a></li>
+					</ul></div>
+					<div class="button anchor"><a href="index.html#footer">Let's talk <img src="img/header/arrow.png" alt="arrow"></a></div>
+				</div>
+			</div>
+		</div>
+		<div class="nicolas_sm_section case-study-dark-bg" id="case-study">
+			<div class="container">
+                
+                <div class="nicolas_sm_main_title">
+                    <div class="left">
+                        <span>Studies Case // AI Content Strategy</span>
+                    </div>
+                    <div class="center">
+                        <h2>Engineering Virality: A Framework for Using AI Prompts to Boost Content Engagement</h2>
+                    </div>
+                </div>
+
+                <div class="case-study-content">
+                    
+                    <div class="main-image">
+                        <img src="img/portfolio/EngineeringVirality.jpg" alt="Engineering Virality Main Image">
+                    </div>
+
+                    <div class="text-section">
+                        <p>How to empower creative teams with AI without losing the human touch.</p>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>The Problem</h2>
+                        <p>Let's be honest, the creative process in any content team can sometimes feel like trying to find a matching pair of socks in the dark. One day you're a fountain of brilliant ideas, the next you're staring at a blank screen with the same intensity as a cat watching a ceiling fan. Our team was no different. We were constantly wrestling with the beast known as 'creative block.' It didn't matter if it was a case of the Mondays or just a lack of quality inspiration; the pressure to consistently churn out fresh, engaging content was relentless.</p>
+                        <p>But the struggle didn't end with just coming up with ideas. The bigger, scarier monster under the bed was the question:</p>
+                        <blockquote>"Will anyone actually care?"</blockquote>
+                        <p>We were caught in a tug-of-war between creating content for our loyal, long-time audience and trying to cast a wider net to attract new followers. It felt like we needed a crystal ball to predict what would land, what would flop, and what would just, well, exist. We needed a system, something to turn our creative guesswork into a more predictable science.</p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>The Solution: The AI Prompting Framework</h2>
+                        <p>Enter our secret weapon: a beautifully simple, yet powerfully effective AI Prompting Framework. The magic lies in a two-part cocktail. First, we harness the power of personalized AI. This isn't your run-of-the-mill, generic AI; we've trained it to understand our brand voice, our humor, and our audience.</p>
+                        <img src="img/portfolio/data.jpg" alt="Personalized AI Data Training">
+                        <p>The second ingredient is a humble CSV file. Yes, you read that right. We created a database, a treasure trove of questions, comments, and curiosities collected directly from our audience. Every direct message, every comment on our posts, every question in a Q&A - it all went into this master file. By feeding this CSV to our personalized AI, we essentially created a direct line to our audience's brain, allowing us to generate content ideas that were almost guaranteed to resonate because, well, they asked for it.</p>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>The Implementation</h2>
+                        <p>I handed our team a straightforward mission: become digital archaeologists. Their task was to dig through the digital trenches of our comments sections and direct messages, collecting as many audience questions as they could find. To make this process as painless as possible, I provided them with a simple prompt template. This way, they could easily feed the collected data into our AI system without needing a degree in data science.</p>
+                        <img src="img/portfolio/n8n.jpg" alt="N8N AI Agent Workflow">
+                        <p>Now, you might be wondering how we stitched all of this together. The secret sauce is an AI agent we built using N8N. This is where I have to be a bit of a tease. Due to the confidential nature of our specific workflow, I can't pull back the curtain completely on our N8N setup. It's the engine that makes this whole thing hum, and it's our special recipe.</p>
+                        <p>However, if you're intrigued and want to explore how a similar system could revolutionize your own content strategy, I'm an open book. You can find me on LinkedIn with the same username as my Medium handle. Let's talk.</p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>The Result</h2>
+                        <p>So, did our little experiment work? I'll let the numbers do the talking. For the past three months, by consistently applying this framework to our video creation process, our TikTok analytics have looked like this:</p>
+                        <img src="img/portfolio/tiktok.jpg" alt="TikTok Analytics Results">
+                        <p>As you can see, the results have been nothing short of phenomenal. We've seen a significant uptick in views, engagement, and follower growth. We weren't just throwing content at the wall and hoping it would stick anymore; we were making calculated, data-driven creative decisions. And the best part? The team was having more fun. The pressure was off, and their creative juices were flowing freely, guided by a framework that took the guesswork out of the equation.</p>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>Key Takeaway</h2>
+                        <p>The biggest lesson we learned is that AI doesn't have to be a replacement for human creativity; it can be its most powerful amplifier. By systemizing our inspiration process, we didn't lose our human touch - we enhanced it. We gave our creative team a tool that freed them from the anxiety of the blank page and allowed them to focus on what they do best: creating compelling stories.</p>
+                        <p>The takeaway here is simple:</p>
+                        <blockquote>listen to your audience, leverage the right tools to understand them at scale, and empower your team with a framework that marries data with creativity. You might just find that your next viral hit is hiding in plain sight, right in your comments section.</blockquote>
+                    </div>
+
+                    <div class="back-to-portfolio">
+                        <a href="index.html#portfolio">Back To Portfolio</a>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="nicolas_sm_section" id="footer">
+			<div class="nicolas_sm_footer"><div class="container"><div class="extra_container"><div class="footer_in">
+                <div class="left">
+                    <div class="title"><h3>Feel free to reach out to me. I'm always open to discuss new projects</h3></div>
+                    <div class="contact"><ul>
+                        <li><span>Stay up to date</span><a href="https://www.linkedin.com/in/adamzibran">Linkedin</a><a href="https://www.instagram.com/adam.leoo0/?igsh=MTgyMGMyaXdpYWc1Yw%3D%3D&utm_source=qr">instagram</a></li>
+                        <li><span>Address</span><p>Jl Saen</p><p>Bekasi, IND</p></li>
+                    </ul></div>
+                    <div class="social_button"><ul><li><a href="https://www.behance.net/adamcc1/projects"><span>Behance</span> <img class="sm_svg" src="img/svg/down_arrow.svg" alt="1"></a></li></ul></div>
+                </div>
+                <div class="right">
+                    <form action="https://formsubmit.co/adamleo376@gmail.com" method="POST" id="contactForm">
+                        <input type="hidden" name="_next" value="https://adamzibran.site/terima-kasih.html"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio!">
+                        <ul>
+                            <li><input type="text" placeholder="Name" name="name" class="cf-form-control" required/></li>
+                            <li><input type="email" placeholder="Email" name="email" class="cf-form-control" required/></li>
+                            <li><input type="text" placeholder="Phone" name="phone" class="cf-form-control" required/></li>
+                            <li><select name="service_selection" class="cf-form-control my_select_two" required><option value="">Choose Service</option><option value="Social Media Manager">Social Media Manager</option><option value="Product Development">Product Development</option><option value="Freelance Editor">Freelance Editor</option><option value="Product Design">Product Design</option></select></li>
+                            <li id="text-area-w"><textarea placeholder="Message" name="message" class="cf-form-control" required></textarea></li>
+                        </ul>
+                        <div class="nicolas_sm_button"><button type="submit">Submit <img src="img/header/arrow.png" alt="arrow"></button></div>
+                    </form>
+                </div>
+            </div></div></div></div>
+		</div>
+        <div class="nicolas_sm_section">
+			<div class="nicolas_sm_copyright"><div class="container"><div class="extra_container"><div class="copyright_in">
+                <div class="left"><p>2024 - All Rights Reserved</p></div>
+                <div class="right"><a href="#" id="terms-link" style="cursor: pointer;">Terms & Condition </a><span>/ </span><a href="#" id="privacy-link" style="cursor: pointer;">Privacy Policy</a></div>
+            </div><div class="nicolas_sm_totop"><img class="sm_svg" src="img/svg/down_arrow.svg" alt="1"><a class="nicolas_sm_full_link" href="#"></a></div></div></div></div>
+		</div>
+		<div class="mouse-cursor cursor-outer"></div><div class="mouse-cursor cursor-inner"></div>
+		</div>
+        
+    <div id="consent-modal" class="modal">
+        <div class="modal-content">
+          <h2>Welcome to my Portfolio!</h2>
+          <p>Before you explore, please take a moment to review our policies. By using this site, you agree to our 
+            <span id="consent-terms-link" class="internal-link">Terms & Conditions</span> and 
+            <span id="consent-privacy-link" class="internal-link">Privacy Policy</span>.
+          </p>
+          <div class="consent-modal-buttons"><button id="accept-rules-btn">Accept Rules</button><button id="decline-rules-btn">Decline</button></div>
+        </div>
+    </div>
+    <div id="terms-modal" class="modal"></div><div id="privacy-modal" class="modal"></div>
+    <script src="js/jquery.js"></script><script src="js/contact.form.js"></script><script src="js/plugins.js"></script><script src="js/init.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // JS to handle modals from the original template
+            const termsModal = document.getElementById('terms-modal');
+            const privacyModal = document.getElementById('privacy-modal');
+            const termsLink = document.getElementById('terms-link');
+            const privacyLink = document.getElementById('privacy-link');
+            const closeTermsBtn = document.getElementById('close-terms'); // Assuming these might exist in loaded content
+            const closePrivacyBtn = document.getElementById('close-privacy'); // Assuming these might exist
+            const consentModal = document.getElementById('consent-modal');
+            const acceptBtn = document.getElementById('accept-rules-btn');
+            const declineBtn = document.getElementById('decline-rules-btn');
+            const consentTermsLink = document.getElementById('consent-terms-link');
+            const consentPrivacyLink = document.getElementById('consent-privacy-link');
+
+            // Hide consent modal by default for case study pages
+            if(consentModal) { consentModal.style.display = "none"; }
+
+            if(acceptBtn) { acceptBtn.onclick = function() { consentModal.style.display = "none"; } }
+            if(declineBtn) { declineBtn.onclick = function() { window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; } }
+            if(consentTermsLink) { consentTermsLink.onclick = function() { termsModal.style.display = "block"; } }
+            if(consentPrivacyLink) { consentPrivacyLink.onclick = function() { privacyModal.style.display = "block"; } }
+            if(termsLink) { termsLink.onclick = function(e) { e.preventDefault(); termsModal.style.display = "block"; } }
+            if(privacyLink) { privacyLink.onclick = function(e) { e.preventDefault(); privacyModal.style.display = "block"; } }
+            if(closeTermsBtn) { closeTermsBtn.onclick = function() { termsModal.style.display = "none"; } }
+            if(closePrivacyBtn) { closePrivacyBtn.onclick = function() { privacyModal.style.display = "none"; } }
+
+            window.onclick = function(event) {
+              if (event.target == termsModal) { termsModal.style.display = "none"; }
+              if (event.target == privacyModal) { privacyModal.style.display = "none"; }
+            }
+        });
+    </script>
+</body>
+</html>

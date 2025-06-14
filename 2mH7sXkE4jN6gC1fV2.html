@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Brand from Scratch: A Content Strategy for Elora Camera | Adam Zibran</title>
+	<meta name="description" content="A case study on how we enhanced brand visibility and engagement in a competitive retail market for Elora Camera.">
+	<link rel="apple-touch-icon" href="img/logo/iconic.png">
+	<link rel="icon" href="img/logo/iconic.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Styles from original file to ensure consistency */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); padding-top: 60px; }
+        .modal-content { background-color: #ffffff; margin: 5% auto; padding: 30px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 8px; color: #333; position: relative; animation: slide-down 0.4s ease-out; font-family: 'Montserrat', sans-serif; }
+        @keyframes slide-down { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-content h2 { color: #000; font-family: 'Bebas Neue', sans-serif; margin-top: 0; }
+        .modal-content p { line-height: 1.6; }
+        .close-btn { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; }
+        .close-btn:hover, .close-btn:focus { color: black; text-decoration: none; cursor: pointer; }
+		.nicolas_sm_button button { display: inline-block; text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 24px; font-weight: 500; color: #fff; background-color: #333; padding: 20px 40px; border-radius: 50px; border: none; cursor: pointer; outline: none; transition: all .3s ease; }
+	    .nicolas_sm_button button:hover { background-color: #ffa60c; }
+	    .nicolas_sm_button button img { position: relative; top: 2px; margin-left: 10px; vertical-align: middle; }
+        #consent-modal { display: block; }
+        .consent-modal-buttons { text-align: center; margin-top: 25px; }
+        .consent-modal-buttons button { font-family: 'Bebas Neue', sans-serif; font-size: 20px; padding: 15px 30px; border-radius: 30px; border: none; cursor: pointer; margin: 0 10px; transition: all .3s ease; color: #fff; }
+        #accept-rules-btn { background-color: #ffa60c; }
+        #accept-rules-btn:hover { background-color: #e59400; }
+        #decline-rules-btn { background-color: #333; }
+        #decline-rules-btn:hover { background-color: #555; }
+        .modal-content .internal-link { color: #ffa60c; text-decoration: underline; cursor: pointer; }
+        .nicolas_sm_section.case-study-dark-bg { background-color: #1C1C1C; padding-top: 150px; padding-bottom: 50px; }
+        .nicolas_sm_main_title .left span { color: #ffa60c; }
+        .nicolas_sm_main_title .center p { color: #ffffff; }
+        .case-study-content .main-image { margin-top: 40px; margin-bottom: 60px; text-align: center; }
+        .case-study-content .main-image img { max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 8px; }
+        .case-study-content .text-section { max-width: 100%; margin: 0 auto 50px auto; font-family: 'Montserrat', sans-serif; }
+        .case-study-content .text-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #ffa60c; margin-bottom: 20px; }
+        .case-study-content .text-section h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-top: 25px; margin-bottom: 10px; }
+        .case-study-content .text-section p, .case-study-content .text-section li { font-size: 16px; line-height: 1.8; margin-bottom: 15px; color: #E0E0E0; }
+        .case-study-content .text-section ul, .case-study-content .text-section ol { list-style-position: inside; padding-left: 20px;}
+        .case-study-content .text-section img { max-width: 50%; height: auto; display: block; margin: 40px auto; border-radius: 8px; }
+        .case-study-content .text-section blockquote { border-left: 3px solid #ffa60c; padding-left: 20px; margin: 20px 0; font-style: italic; color: #f0f0f0;}
+        .back-to-portfolio { text-align: center; margin-top: 50px; }
+        .back-to-portfolio a { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #fff; background-color: #ffa60c; padding: 20px 40px; border-radius: 50px; text-decoration: none; transition: all .3s ease; }
+        .back-to-portfolio a:hover { background-color: #333; }
+    </style>
+</head>
+<body>
+  
+  	<div id="preloader"><div class="loader_line"></div></div>
+	<div class="nicolas_sm_wrapper_all" data-magic-cursor="show">
+	
+		<!-- MOBILE MENU -->
+		<div class="nicolas_sa_mobile_menu">
+			<div class="mobile_menu_inner"><div class="mobile_in"><div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="" /></a></div><div class="trigger"><div class="hamburger hamburger--slider"><div class="hamburger-box"><div class="hamburger-inner"></div></div></div></div></div></div>
+			<div class="dropdown"><div class="dropdown_inner"><ul class="anchor_nav">
+				<li><a href="index.html#home">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#service">Skills</a></li><li><a href="index.html#portfolio">Portfolio</a></li><li><a href="index.html#blog">Blog</a></li><li><a href="index.html#footer">Contact</a></li>
+			</ul></div></div>
+		</div>
+		<!-- /MOBILE MENU -->
+
+		<!-- HEADER -->
+		<div class="nicolas_sm_header">
+			<div class="overlay_el"><div class="overlay_bg"><div class="overlay_img"></div><div class="overlay_color"></div></div>
+				<div class="overlay_content">
+					<div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="logo"></a></div>
+					<div class="menu"><ul class="anchor_nav">
+						<li><a href="index.html#home">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#service">Skills</a></li><li><a href="index.html#portfolio">Portfolio</a></li><li><a href="index.html#blog">Blog</a></li><li><a href="index.html#footer">Contact</a></li>
+					</ul></div>
+					<div class="button anchor"><a href="index.html#footer">Let's talk <img src="img/header/arrow.png" alt="arrow"></a></div>
+				</div>
+			</div>
+		</div>
+		<!-- /HEADER -->
+		
+		<!-- MAIN CONTENT -->
+		<div class="nicolas_sm_section case-study-dark-bg" id="case-study">
+			<div class="container">
+                
+                <div class="nicolas_sm_main_title">
+                    <div class="left">
+                        <span>Studies Case // Elora Camera</span>
+                    </div>
+                    <div class="center">
+                        <h2>Building a Brand from Scratch: A Content Strategy for Elora Camera</h2>
+                    </div>
+                </div>
+
+                <div class="case-study-content">
+                    
+                    <div class="text-section">
+                        <p>How we enhanced brand visibility and engagement in a competitive retail market.</p>
+                        <p>In today’s crowded digital marketplace, simply having a great product isn’t enough. To truly succeed, a brand must tell a compelling story, foster a community, and create an experience that customers value. This is the story of how Elora Camera, a specialized camera retailer, carved out its niche by transforming a market challenge into a unique brand identity.</p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>1. The Challenge: Cutting Through the Noise</h2>
+                        <p>When we first launched Elora Camera, we faced a two-fold challenge that is common in the retail world. First, the market was saturated. We were competing against a sea of small, individual sellers on platforms like Facebook Marketplace and other e-commerce sites. This made it difficult to stand out and command a fair price.</p>
+                        <p>Second, there was a significant gap in the supply of high-quality, trustworthy second-hand camera gear. Customers were often hesitant, fearing they would receive a product that was defective or not as described.</p>
+                        <p>Our core problem wasn’t just about selling cameras; it was about building trust and offering value beyond the transaction. Instead of competing on price alone, we identified an opportunity that our competitors had overlooked: creating an “exclusive experience” from the moment a customer discovered us online to the moment they walked into our store.</p>
+                        
+                        <img src="img/portfolio/elora.jpg" alt="Elora Camera Store Exterior">
+
+                        <p>We invested in our physical space with a clean, modern interior and exterior. But more importantly, we extended this “exclusive” philosophy to our brand identity, ensuring every product — even though 80% of our inventory is second-hand — was presented with a premium look and feel.</p>
+                        
+                        <img src="img/portfolio/ELORA-2.png" alt="Elora Camera In-Store Coffee Shop">
+
+                        <p>To further elevate this, we even built a small coffee shop within the store. This created a relaxed, welcoming space where customers could have calm and enjoyable consultations with our team, completely changing the dynamic of a typical retail interaction.</p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>2. The Solution: A Multi-Platform Content Ecosystem</h2>
+                        <p>To translate this “exclusive experience” into the digital world, we needed a robust content strategy. My approach was to build a content ecosystem where each platform played a unique role, all unified by a single, consistent brand voice. We didn’t just post content; we assigned a purpose to each channel.</p>
+                        
+                        <img src="img/portfolio/ELORA-3.jpg" alt="Elora Camera Content Ecosystem Diagram">
+                        
+                        <ul>
+                            <li><strong>YouTube: The Hub for In-Depth Knowledge.</strong> YouTube was reserved for long-form, high-value content. This included deep-dive tutorials, comprehensive product reviews, and brand comparisons (e.g., “Comparing a Brand X lens vs. a Brand Y lens at the same price point”). This content established our authority and became a trusted resource for enthusiasts and professionals alike.</li>
+                            <li><strong>Instagram: The Digital Showroom.</strong> Instagram became our primary platform for showcasing available products. We focused on high-quality, professional photography that highlighted the pristine condition and intricate details of each camera and lens. The goal was to make our second-hand gear look as desirable and “premium” as brand-new items.</li>
+                            <li><strong>TikTok: Quick, Actionable Education.</strong> We used TikTok for short-form video content aimed at educating our audience. Topics included quick tips on what to check when buying a used camera, simple maintenance guides, and myth-busting common misconceptions. This positioned us as a helpful expert, not just a seller.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>3. Execution Highlights: Bringing the Brand to Life</h2>
+                        <p>A strategy is only as good as its execution. Here’s how we brought the Elora Camera brand to life across our content ecosystem.</p>
+                        
+                        <h3>1. Mastering the Visual Identity</h3>
+                        <p>We made sure our visuals were clean, beautiful, and instantly recognizable. Every product was shot professionally to convey quality and trustworthiness, making our audience feel confident in the gear they were seeing.</p>
+                        <img src="img/portfolio/ELORA-4.jpg" alt="Elora Camera Professional Product Photography">
+
+                        <h3>2. Leveraging In-House Advantages</h3>
+                        <p>Creating this much high-quality content required the right tools. We invested in a proper studio setup with professional backdrops and accessories. However, our greatest advantage was inherent to our business: we are a camera store. We had easy access to a vast inventory of professional cameras and lighting equipment. This allowed us to produce world-class content without the prohibitive costs that would stop other small businesses.</p>
+
+                        <h3>3. Crafting Authentic, Engaging Scripts</h3>
+                        <p>Our content was never just a reading of a spec sheet. Our scriptwriting process was a collaborative effort. We started with the official data provided by the manufacturer. Then, we held “brainstorming” sessions where our team members, each with different brand preferences and years of hands-on experience, would compare, debate, and share their personal insights. This process allowed us to create authentic narratives, raise interesting “issues” or discussion points, and invite our audience to join the conversation.</p>
+                        <img src="img/portfolio/ELORA-5.jpg" alt="Elora Camera Team Brainstorming Session">
+
+                        <h3>4. Driving Community Interaction</h3>
+                        <p>Our goal was to be more than just a store; we wanted to be a community hub. We actively encouraged our audience to share their experiences, ask questions, and post testimonials about their gear. Our comment sections became vibrant forums for discussion. By providing a platform for genuine interaction, we shifted the relationship from transactional to collaborative.</p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>4. The Result: A Recognizable and Trusted Brand</h2>
+                        <p>The results were transformative. We saw a significant increase in brand recognition and audience engagement. Customers began to recognize the “Elora Camera style” in their feeds. Social media interaction soared, and more importantly, this engagement translated into a highly loyal customer base that trusted our expertise and our products. We were no longer just another camera seller; we were a recognized and trusted name in the photography community.</p>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>5. Key Takeaways</h2>
+                        <ol>
+                            <li><strong>Experience is Your Strongest Differentiator.</strong> In a saturated market, the customer experience is what sets you apart. We didn’t just sell used cameras; we sold confidence, exclusivity, and access to a knowledgeable community.</li>
+                            <li><strong>Lean Into Your “Unfair Advantage”.</strong> Every business has something unique it can leverage. For us, it was our in-house access to professional gear. Identify what you can do better or more easily than your competitors and build your strategy around that strength.</li>
+                            <li><strong>Build an Ecosystem, Not Just Profiles.</strong> Don’t post the same content everywhere. Assign a clear purpose to each platform. A strategic ecosystem ensures your content is effective, efficient, and reaches the right audience in the right context.</li>
+                            <li><strong>Fuel Conversation, Not Just Content.</strong> The most powerful content invites discussion. By combining hard data with authentic, personal experience, you can create talking points that engage your audience and make them feel like part of the brand’s story.</li>
+                            <li><strong>Transform Your Audience into a Community.</strong> A customer buys from you once; a community member advocates for you forever. By creating spaces for interaction and valuing your audience’s voice, you build a loyal following that is foundational to long-term success.</li>
+                        </ol>
+                    </div>
+
+                    <div class="back-to-portfolio">
+                        <a href="index.html#portfolio">Back To Portfolio</a>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<!-- /MAIN CONTENT -->
+		
+        <!-- FOOTER -->
+        <div class="nicolas_sm_section" id="footer">
+			<div class="nicolas_sm_footer"><div class="container"><div class="extra_container"><div class="footer_in">
+                <div class="left">
+                    <div class="title"><h3>Feel free to reach out to me. I'm always open to discuss new projects</h3></div>
+                    <div class="contact"><ul>
+                        <li><span>Stay up to date</span><a href="https://www.linkedin.com/in/adamzibran">Linkedin</a><a href="https://www.instagram.com/adam.leoo0/?igsh=MTgyMGMyaXdpYWc1Yw%3D%3D&utm_source=qr">instagram</a></li>
+                        <li><span>Address</span><p>Jl Saen</p><p>Bekasi, IND</p></li>
+                    </ul></div>
+                    <div class="social_button"><ul><li><a href="https://www.behance.net/adamcc1/projects"><span>Behance</span> <img class="sm_svg" src="img/svg/down_arrow.svg" alt="1"></a></li></ul></div>
+                </div>
+                <div class="right">
+                    <form action="https://formsubmit.co/adamleo376@gmail.com" method="POST" id="contactForm">
+                        <input type="hidden" name="_next" value="https://adamzibran.site/terima-kasih.html"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio!">
+                        <ul>
+                            <li><input type="text" placeholder="Name" name="name" class="cf-form-control" required/></li>
+                            <li><input type="email" placeholder="Email" name="email" class="cf-form-control" required/></li>
+                            <li><input type="text" placeholder="Phone" name="phone" class="cf-form-control" required/></li>
+                            <li><select name="service_selection" class="cf-form-control my_select_two" required><option value="">Choose Service</option><option value="Social Media Manager">Social Media Manager</option><option value="Product Development">Product Development</option><option value="Freelance Editor">Freelance Editor</option><option value="Product Design">Product Design</option></select></li>
+                            <li id="text-area-w"><textarea placeholder="Message" name="message" class="cf-form-control" required></textarea></li>
+                        </ul>
+                        <div class="nicolas_sm_button"><button type="submit">Submit <img src="img/header/arrow.png" alt="arrow"></button></div>
+                    </form>
+                </div>
+            </div></div></div></div>
+		</div>
+        <!-- /FOOTER -->
+
+		<!-- COPYRIGHT -->
+		<div class="nicolas_sm_section">
+			<div class="nicolas_sm_copyright"><div class="container"><div class="extra_container"><div class="copyright_in">
+                <div class="left"><p>2024 - All Rights Reserved</p></div>
+                <div class="right"><a href="#" id="terms-link" style="cursor: pointer;">Terms & Condition </a><span>/ </span><a href="#" id="privacy-link" style="cursor: pointer;">Privacy Policy</a></div>
+            </div><div class="nicolas_sm_totop"><img class="sm_svg" src="img/svg/down_arrow.svg" alt="1"><a class="nicolas_sm_full_link" href="#"></a></div></div></div></div>
+		</div>
+		<!-- /COPYRIGHT -->
+
+		<!-- CURSOR -->
+		<div class="mouse-cursor cursor-outer"></div><div class="mouse-cursor cursor-inner"></div>
+		<!-- /CURSOR -->
+	</div>
+        
+    <!-- MODALS -->
+    <div id="consent-modal" class="modal">
+        <div class="modal-content">
+          <h2>Welcome to my Portfolio!</h2>
+          <p>Before you explore, please take a moment to review our policies. By using this site, you agree to our 
+            <span id="consent-terms-link" class="internal-link">Terms & Conditions</span> and 
+            <span id="consent-privacy-link" class="internal-link">Privacy Policy</span>.
+          </p>
+          <div class="consent-modal-buttons"><button id="accept-rules-btn">Accept Rules</button><button id="decline-rules-btn">Decline</button></div>
+        </div>
+    </div>
+    <div id="terms-modal" class="modal"></div><div id="privacy-modal" class="modal"></div>
+    <!-- /MODALS -->
+    
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script><script src="js/contact.form.js"></script><script src="js/plugins.js"></script><script src="js/init.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // JS to handle modals from the original template
+            const termsModal = document.getElementById('terms-modal');
+            const privacyModal = document.getElementById('privacy-modal');
+            const termsLink = document.getElementById('terms-link');
+            const privacyLink = document.getElementById('privacy-link');
+            const closeTermsBtn = document.getElementById('close-terms'); // Assuming these might exist in loaded content
+            const closePrivacyBtn = document.getElementById('close-privacy'); // Assuming these might exist
+            const consentModal = document.getElementById('consent-modal');
+            const acceptBtn = document.getElementById('accept-rules-btn');
+            const declineBtn = document.getElementById('decline-rules-btn');
+            const consentTermsLink = document.getElementById('consent-terms-link');
+            const consentPrivacyLink = document.getElementById('consent-privacy-link');
+
+            // Hide consent modal by default for case study pages
+            if(consentModal) { consentModal.style.display = "none"; }
+
+            if(acceptBtn) { acceptBtn.onclick = function() { consentModal.style.display = "none"; } }
+            if(declineBtn) { declineBtn.onclick = function() { window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; } }
+            if(consentTermsLink) { consentTermsLink.onclick = function() { termsModal.style.display = "block"; } }
+            if(consentPrivacyLink) { consentPrivacyLink.onclick = function() { privacyModal.style.display = "block"; } }
+            if(termsLink) { termsLink.onclick = function(e) { e.preventDefault(); termsModal.style.display = "block"; } }
+            if(privacyLink) { privacyLink.onclick = function(e) { e.preventDefault(); privacyModal.style.display = "block"; } }
+            if(closeTermsBtn) { closeTermsBtn.onclick = function() { termsModal.style.display = "none"; } }
+            if(closePrivacyBtn) { closePrivacyBtn.onclick = function() { privacyModal.style.display = "none"; } }
+
+            window.onclick = function(event) {
+              if (event.target == termsModal) { termsModal.style.display = "none"; }
+              if (event.target == privacyModal) { privacyModal.style.display = "none"; }
+            }
+        });
+    </script>
+</body>
+</html>

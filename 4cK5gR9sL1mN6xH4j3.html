@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Built an AI-Powered Desktop App to Automate Creative Workflows | Adam Zibran</title>
+	<meta name="description" content="A practical case study on using Python and AI to solve real-world business bottlenecks.">
+	<link rel="apple-touch-icon" href="img/logo/iconic.png">
+	<link rel="icon" href="img/logo/iconic.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Styles from original file to ensure consistency */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); padding-top: 60px; }
+        .modal-content { background-color: #ffffff; margin: 5% auto; padding: 30px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 8px; color: #333; position: relative; animation: slide-down 0.4s ease-out; font-family: 'Montserrat', sans-serif; }
+        @keyframes slide-down { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-content h2 { color: #000; font-family: 'Bebas Neue', sans-serif; margin-top: 0; }
+        .modal-content p { line-height: 1.6; }
+        .close-btn { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; }
+        .close-btn:hover, .close-btn:focus { color: black; text-decoration: none; cursor: pointer; }
+		.nicolas_sm_button button { display: inline-block; text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 24px; font-weight: 500; color: #fff; background-color: #333; padding: 20px 40px; border-radius: 50px; border: none; cursor: pointer; outline: none; transition: all .3s ease; }
+	    .nicolas_sm_button button:hover { background-color: #ffa60c; }
+	    .nicolas_sm_button button img { position: relative; top: 2px; margin-left: 10px; vertical-align: middle; }
+        #consent-modal { display: block; }
+        .consent-modal-buttons { text-align: center; margin-top: 25px; }
+        .consent-modal-buttons button { font-family: 'Bebas Neue', sans-serif; font-size: 20px; padding: 15px 30px; border-radius: 30px; border: none; cursor: pointer; margin: 0 10px; transition: all .3s ease; color: #fff; }
+        #accept-rules-btn { background-color: #ffa60c; }
+        #accept-rules-btn:hover { background-color: #e59400; }
+        #decline-rules-btn { background-color: #333; }
+        #decline-rules-btn:hover { background-color: #555; }
+        .modal-content .internal-link { color: #ffa60c; text-decoration: underline; cursor: pointer; }
+        .nicolas_sm_section.case-study-dark-bg { background-color: #1C1C1C; padding-top: 150px; padding-bottom: 50px; }
+        .nicolas_sm_main_title .left span { color: #ffa60c; }
+        .nicolas_sm_main_title .center p { color: #ffffff; }
+        .case-study-content .main-image { margin-top: 40px; margin-bottom: 60px; text-align: center; }
+        .case-study-content .main-image img { max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 8px; }
+        .case-study-content .text-section { max-width: 100%; margin: 0 auto 50px auto; font-family: 'Montserrat', sans-serif; }
+        .case-study-content .text-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #ffa60c; margin-bottom: 20px; }
+        .case-study-content .text-section h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-top: 25px; margin-bottom: 10px; }
+        .case-study-content .text-section p, .case-study-content .text-section li { font-size: 16px; line-height: 1.8; margin-bottom: 15px; color: #E0E0E0; }
+        .case-study-content .text-section ul, .case-study-content .text-section ol { list-style-position: inside; padding-left: 20px;}
+        .case-study-content .text-section img { max-width: 100%; height: auto; display: block; margin: 40px auto; border-radius: 8px; }
+        .case-study-content .text-section blockquote { border-left: 3px solid #ffa60c; padding-left: 20px; margin: 20px 0; font-style: italic; color: #f0f0f0;}
+        .back-to-portfolio { text-align: center; margin-top: 50px; }
+        .back-to-portfolio a { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #fff; background-color: #ffa60c; padding: 20px 40px; border-radius: 50px; text-decoration: none; transition: all .3s ease; }
+        .back-to-portfolio a:hover { background-color: #333; }
+    </style>
+</head>
+<body>
+  
+  	<div id="preloader"><div class="loader_line"></div></div>
+	<div class="nicolas_sm_wrapper_all" data-magic-cursor="show">
+	
+		<!-- MOBILE MENU -->
+		<div class="nicolas_sa_mobile_menu">
+			<div class="mobile_menu_inner"><div class="mobile_in"><div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="" /></a></div><div class="trigger"><div class="hamburger hamburger--slider"><div class="hamburger-box"><div class="hamburger-inner"></div></div></div></div></div></div>
+			<div class="dropdown"><div class="dropdown_inner"><ul class="anchor_nav">
+				<li><a href="index.html#home">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#service">Skills</a></li><li><a href="index.html#portfolio">Portfolio</a></li><li><a href="index.html#blog">Blog</a></li><li><a href="index.html#footer">Contact</a></li>
+			</ul></div></div>
+		</div>
+		<!-- /MOBILE MENU -->
+
+		<!-- HEADER -->
+		<div class="nicolas_sm_header">
+			<div class="overlay_el"><div class="overlay_bg"><div class="overlay_img"></div><div class="overlay_color"></div></div>
+				<div class="overlay_content">
+					<div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="logo"></a></div>
+					<div class="menu"><ul class="anchor_nav">
+						<li><a href="index.html#home">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#service">Skills</a></li><li><a href="index.html#portfolio">Portfolio</a></li><li><a href="index.html#blog">Blog</a></li><li><a href="index.html#footer">Contact</a></li>
+					</ul></div>
+					<div class="button anchor"><a href="index.html#footer">Let's talk <img src="img/header/arrow.png" alt="arrow"></a></div>
+				</div>
+			</div>
+		</div>
+		<!-- /HEADER -->
+		
+		<!-- MAIN CONTENT -->
+		<div class="nicolas_sm_section case-study-dark-bg" id="case-study">
+			<div class="container">
+                
+                <div class="nicolas_sm_main_title">
+                    <div class="left">
+                        <span>Studies Case // Desktop App Automation</span>
+                    </div>
+                    <div class="center">
+                        <h2>How I Built an AI-Powered Desktop App to Automate Creative Workflows</h2>
+                    </div>
+                </div>
+
+                <div class="case-study-content">
+                    
+                    <div class="main-image">
+                        <img src="img/portfolio/ichi.jpg" alt="AI-Powered Desktop App Main Image">
+                    </div>
+
+                    <div class="text-section">
+                        <p>A practical case study on using Python and AI to solve real-world business bottlenecks.</p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>The Problem: Our Team Was Drowning in Paperwork</h2>
+                        <p>Let me set the scene. Our company is in the business of doing good. We help Indonesian workers who have spent years in Japan navigate the bureaucratic maze to claim their hard-earned pension funds. It's rewarding work, but a crucial part of our process was, until recently, an absolute nightmare.</p>
+                        <p>The Japanese government, in its infinite wisdom, sends us these official paper receipts for every single client whose pension process is finalized. Think of them as the golden ticket, confirming everything is squared away. These documents contain all the critical data: the client's name, their pension number, payout details, and so on.</p>
+                        <blockquote>"Our job? Extract that data. Simple, right?"</blockquote>
+                        <p><strong>Wrong.</strong> Our previous method involved a human being, a pair of eyes, and a whole lot of patience. Team members would manually read each receipt and painstakingly type the information into an Excel spreadsheet. This data would then get passed to our finance department for the next steps.</p>
+                        <p><strong>Now, imagine doing this for 500 to 800 clients every single month.</strong></p>
+                        <p><strong>Each document took about 3–5 minutes to process.</strong> If you do the math… well, you don't have to, because I already did. <strong>For 500 documents, that's roughly 2,500 minutes, or about 41 hours of mind-numbing, soul-crushing data entry. With an 8-hour workday,</strong> we were losing the better part of a full work week. It was a bottleneck so bad, we practically needed a traffic controller for our spreadsheets. Our team was spending more time with these receipts than with their families. It was repetitive, inefficient, and, let's be honest, a one-way ticket to burnout city.</p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>The Tech & The Strategy: The "Aha!" Moment</h2>
+                        <p>One afternoon, while staring at a mountain of these receipts, I noticed something. Despite the unique data on each one, the layout was always the same. The name was always in the top left, the pension number was always in its little box, and so on. They were all printed on the same, unchanging template.</p>
+                        <img src="img/portfolio/aha.jpg" alt="The 'Aha!' Moment">
+                        <p>A lightbulb went off in my head. It was one of those classic "shower thoughts," except I was fully clothed and surrounded by paper.</p>
+                        <blockquote>"Why are we doing this?" I thought. "This is a job for a robot."</blockquote>
+                        <p>And just like that, the mission was clear: automate the heck out of this process. The strategy was simple. If the format never changes, we don't need a human to find the data. We just need to tell a machine where to look. The obvious tool for the job was Artificial Intelligence, specifically something that could read text from an image.</p>
+                        <img src="img/portfolio/sample.jpg" alt="Sample of Japan Pension Receipt">
+                        <p><em>Sample how looks Japan Pension Receipt</em></p>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>The Process: Teaching a Machine to Read</h2>
+                        <p>My initial thought, "Let's use AI!" was the easy part. The execution required a bit of research.</p>
+                        <p>The core of the problem was Optical Character Recognition (OCR). But I knew we needed something more advanced than a basic scanner app from 2010. We needed something robust, accurate, and intelligent. That's what led me to the Google Vision AI platform. It's like OCR on steroids - incredibly powerful and spookily accurate at identifying and extracting text from images.</p>
+                        <p>Here's the breakdown of how the solution works:</p>
+                        <ol>
+                            <li><strong>Defining the Template:</strong> First, I took one of the receipts and mapped it out. I identified the specific coordinates - the rectangular "region" - for each piece of data we needed. For example, Name: {x: 50, y: 100, width: 200, height: 30}. I essentially created a treasure map for the AI.</li>
+                        </ol>
+                        <img src="img/portfolio/region.jpg" alt="Defining data regions on the receipt">
+                        <ol start="2">
+                            <li><strong>Building the App:</strong> I developed a simple desktop application using Python. The user interface is minimalist: "Select Scanned Receipts," "Choose Save Location," and a big, beautiful "Run" button.</li>
+                            <li><strong>The Magic Workflow:</strong>
+                                <ul>
+                                    <li>The user scans a whole batch of receipts into a folder as images (JPG or PNG).</li>
+                                    <li>They open the app and select that folder.</li>
+                                    <li>They hit "Run."</li>
+                                    <li>The app iterates through each image file. For every image, it sends a request to the Google Vision AI API, along with the predefined "regions" for the data we want.</li>
+                                    <li>The AI reads only the text within those specific areas on the image.</li>
+                                    <li>It sends the extracted text back to our application almost instantly.</li>
+                                    <li>The application neatly organizes the data (Name, Pension Number, etc.) and appends it as a new row in a CSV file. CSVs are great because they're lightweight and can be opened by virtually any spreadsheet program, like Excel or Google Sheets.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>The entire process is designed to be as hands-off as possible. The user just tells the app where the files are and watches the magic happen.</p>
+                        <img src="img/portfolio/app.jpg" alt="Desktop App UI">
+                        <p><em>Desktop App UI</em></p>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>The Outcome: From 5 Days to 7 Minutes</h2>
+                        <img src="img/portfolio/result.jpg" alt="Automation Results">
+                        <p>So, what did this little experiment achieve?</p>
+                        <p>Let's go back to our original benchmark. Manually processing 500 documents took about 41 hours, which is roughly 5 full workdays for one person.</p>
+                        <p>With the new AI-powered app, processing those same 500 documents <strong>now takes about 7 minutes.</strong></p>
+                        <p>No, that's not a typo. <strong>Seven. Minutes.</strong></p>
+                        <p>The app processes the entire batch at once, firing off requests and compiling the data faster than you can brew a pot of coffee.</p>
+                        <p>Now, you might be asking, "Is it 100% accurate?"</p>
+                        <p>Of course not. And anyone who tells you their AI system is 100% perfect is probably trying to sell you something. AI, even Google's, can occasionally misread a character or get confused by a smudge on the paper.</p>
+                        <p>But here's the beauty of it. Instead of spending 41 hours on manual data entry, our team now spends about 30–60 minutes verifying the AI's output. They open the CSV file, place it side-by-side with the scanned receipts, and quickly eyeball the data for any obvious errors. It's infinitely faster to proofread than to type from scratch.</p>
+                        <p>We traded three days of tedious labor for one hour of quality assurance. I'd call that a win. Our team is happier, our process is ridiculously efficient, and we can now focus our energy on what actually matters: helping our clients. All thanks to a little bit of code and a "lazy" idea.</p>
+                    </div>
+
+                    <div class="back-to-portfolio">
+                        <a href="index.html#portfolio">Back To Portfolio</a>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<!-- /MAIN CONTENT -->
+		
+        <!-- FOOTER -->
+        <div class="nicolas_sm_section" id="footer">
+			<div class="nicolas_sm_footer"><div class="container"><div class="extra_container"><div class="footer_in">
+                <div class="left">
+                    <div class="title"><h3>Feel free to reach out to me. I'm always open to discuss new projects</h3></div>
+                    <div class="contact"><ul>
+                        <li><span>Stay up to date</span><a href="https://www.linkedin.com/in/adamzibran">Linkedin</a><a href="https://www.instagram.com/adam.leoo0/?igsh=MTgyMGMyaXdpYWc1Yw%3D%3D&utm_source=qr">instagram</a></li>
+                        <li><span>Address</span><p>Jl Saen</p><p>Bekasi, IND</p></li>
+                    </ul></div>
+                    <div class="social_button"><ul><li><a href="https://www.behance.net/adamcc1/projects"><span>Behance</span> <img class="sm_svg" src="img/svg/down_arrow.svg" alt="1"></a></li></ul></div>
+                </div>
+                <div class="right">
+                    <form action="https://formsubmit.co/adamleo376@gmail.com" method="POST" id="contactForm">
+                        <input type="hidden" name="_next" value="https://adamzibran.site/terima-kasih.html"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio!">
+                        <ul>
+                            <li><input type="text" placeholder="Name" name="name" class="cf-form-control" required/></li>
+                            <li><input type="email" placeholder="Email" name="email" class="cf-form-control" required/></li>
+                            <li><input type="text" placeholder="Phone" name="phone" class="cf-form-control" required/></li>
+                            <li><select name="service_selection" class="cf-form-control my_select_two" required><option value="">Choose Service</option><option value="Social Media Manager">Social Media Manager</option><option value="Product Development">Product Development</option><option value="Freelance Editor">Freelance Editor</option><option value="Product Design">Product Design</option></select></li>
+                            <li id="text-area-w"><textarea placeholder="Message" name="message" class="cf-form-control" required></textarea></li>
+                        </ul>
+                        <div class="nicolas_sm_button"><button type="submit">Submit <img src="img/header/arrow.png" alt="arrow"></button></div>
+                    </form>
+                </div>
+            </div></div></div></div>
+		</div>
+        <!-- /FOOTER -->
+
+		<!-- COPYRIGHT -->
+		<div class="nicolas_sm_section">
+			<div class="nicolas_sm_copyright"><div class="container"><div class="extra_container"><div class="copyright_in">
+                <div class="left"><p>2024 - All Rights Reserved</p></div>
+                <div class="right"><a href="#" id="terms-link" style="cursor: pointer;">Terms & Condition </a><span>/ </span><a href="#" id="privacy-link" style="cursor: pointer;">Privacy Policy</a></div>
+            </div><div class="nicolas_sm_totop"><img class="sm_svg" src="img/svg/down_arrow.svg" alt="1"><a class="nicolas_sm_full_link" href="#"></a></div></div></div></div>
+		</div>
+		<!-- /COPYRIGHT -->
+
+		<!-- CURSOR -->
+		<div class="mouse-cursor cursor-outer"></div><div class="mouse-cursor cursor-inner"></div>
+		<!-- /CURSOR -->
+	</div>
+        
+    <!-- MODALS -->
+    <div id="consent-modal" class="modal">
+        <div class="modal-content">
+          <h2>Welcome to my Portfolio!</h2>
+          <p>Before you explore, please take a moment to review our policies. By using this site, you agree to our 
+            <span id="consent-terms-link" class="internal-link">Terms & Conditions</span> and 
+            <span id="consent-privacy-link" class="internal-link">Privacy Policy</span>.
+          </p>
+          <div class="consent-modal-buttons"><button id="accept-rules-btn">Accept Rules</button><button id="decline-rules-btn">Decline</button></div>
+        </div>
+    </div>
+    <div id="terms-modal" class="modal"></div><div id="privacy-modal" class="modal"></div>
+    <!-- /MODALS -->
+    
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script><script src="js/contact.form.js"></script><script src="js/plugins.js"></script><script src="js/init.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // JS to handle modals from the original template
+            const termsModal = document.getElementById('terms-modal');
+            const privacyModal = document.getElementById('privacy-modal');
+            const termsLink = document.getElementById('terms-link');
+            const privacyLink = document.getElementById('privacy-link');
+            const closeTermsBtn = document.getElementById('close-terms'); // Assuming these might exist in loaded content
+            const closePrivacyBtn = document.getElementById('close-privacy'); // Assuming these might exist
+            const consentModal = document.getElementById('consent-modal');
+            const acceptBtn = document.getElementById('accept-rules-btn');
+            const declineBtn = document.getElementById('decline-rules-btn');
+            const consentTermsLink = document.getElementById('consent-terms-link');
+            const consentPrivacyLink = document.getElementById('consent-privacy-link');
+
+            // Hide consent modal by default for case study pages
+            if(consentModal) { consentModal.style.display = "none"; }
+
+            if(acceptBtn) { acceptBtn.onclick = function() { consentModal.style.display = "none"; } }
+            if(declineBtn) { declineBtn.onclick = function() { window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; } }
+            if(consentTermsLink) { consentTermsLink.onclick = function() { termsModal.style.display = "block"; } }
+            if(consentPrivacyLink) { consentPrivacyLink.onclick = function() { privacyModal.style.display = "block"; } }
+            if(termsLink) { termsLink.onclick = function(e) { e.preventDefault(); termsModal.style.display = "block"; } }
+            if(privacyLink) { privacyLink.onclick = function(e) { e.preventDefault(); privacyModal.style.display = "block"; } }
+            if(closeTermsBtn) { closeTermsBtn.onclick = function() { termsModal.style.display = "none"; } }
+            if(closePrivacyBtn) { closePrivacyBtn.onclick = function() { privacyModal.style.display = "none"; } }
+
+            window.onclick = function(event) {
+              if (event.target == termsModal) { termsModal.style.display = "none"; }
+              if (event.target == privacyModal) { privacyModal.style.display = "none"; }
+            }
+        });
+    </script>
+</body>
+</html>
