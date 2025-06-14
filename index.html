@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="css/plugins.css">
     <link rel="stylesheet" href="css/style.css">
 
-	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
     <style>
         .modal {
             display: none; position: fixed; z-index: 9999; left: 0; top: 0;
@@ -528,26 +526,22 @@
 								</div>
 							</div>
 							<div class="right">
-								<form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
-									<input type="hidden" name="access_key" value="15f8a064-9dd5-4580-b713-6c1e9a1c3415">
-									<input type="hidden" name="subject" value="New Contact Form Submission from Portfolio">
-									<input type="hidden" name="from_name" value="My Portfolio Website">
-									<input type="hidden" name="redirect" value="https://adamzibran.site/terima-kasih.html">
+								<form action="https://formsubmit.co/adamleo376@gmail.com" method="POST" id="contactForm">
+									<input type="hidden" name="_next" value="https://adamzibran.site/terima-kasih.html">
+									<input type="hidden" name="_captcha" value="false">
+									<input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio!">
 									<ul>
 										<li>
-											<input type="text" placeholder="Name" name="contact_name" class="cf-form-control" required/>
-											<span></span>
+											<input type="text" placeholder="Name" name="name" class="cf-form-control" required/>
 										</li>
 										<li>
-											<input type="email" placeholder="Email" name="contact_email" class="cf-form-control" required/>
-											<span></span>
+											<input type="email" placeholder="Email" name="email" class="cf-form-control" required/>
 										</li>
 										<li>
-											<input type="text" placeholder="Phone" name="contact_phone" class="cf-form-control" required/>
-											<span></span>
+											<input type="text" placeholder="Phone" name="phone" class="cf-form-control" required/>
 										</li>
 										<li>
-											<select name="contact_subject" class="cf-form-control my_select_two" required>
+											<select name="service_selection" class="cf-form-control my_select_two" required>
 												<option value="">Choose Service</option>
 												<option value="Social Media Manager">Social Media Manager</option>
 												<option value="Product Development">Product Development</option>
@@ -556,10 +550,10 @@
 											</select>
 										</li>
 										<li id="text-area-w">
-											<textarea placeholder="Message" name="contact_message" class="cf-form-control" required></textarea>
+											<textarea placeholder="Message" name="message" class="cf-form-control" required></textarea>
 										</li>
 									</ul>
-									<div class="cf-turnstile" data-sitekey="0x4AAAAAABhC3EmwGm20CSMJ" data-theme="light"></div>
+
 									<div class="nicolas_sm_button">
 										<button type="submit">Submit <img src="img/header/arrow.png" alt="arrow"></button>
 									</div>
