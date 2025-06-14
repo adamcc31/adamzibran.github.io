@@ -55,6 +55,43 @@
 		margin-left: 10px;
 		vertical-align: middle;
 	}
+
+    /* Styles for the new consent pop-up */
+    #consent-modal {
+        display: block; /* Show by default */
+    }
+    .consent-modal-buttons {
+        text-align: center;
+        margin-top: 25px;
+    }
+    .consent-modal-buttons button {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 20px;
+        padding: 15px 30px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: all .3s ease;
+        color: #fff;
+    }
+    #accept-rules-btn {
+        background-color: #ffa60c;
+    }
+    #accept-rules-btn:hover {
+        background-color: #e59400;
+    }
+    #decline-rules-btn {
+        background-color: #333;
+    }
+    #decline-rules-btn:hover {
+        background-color: #555;
+    }
+    .modal-content .internal-link {
+        color: #ffa60c;
+        text-decoration: underline;
+        cursor: pointer;
+    }
     </style>
 </head>
 <body>
@@ -587,6 +624,21 @@
 		<div class="mouse-cursor cursor-outer"></div>
 		<div class="mouse-cursor cursor-inner"></div>
 		</div>
+        
+    <div id="consent-modal" class="modal">
+        <div class="modal-content">
+          <h2>Welcome to my Portfolio!</h2>
+          <p>Before you explore, please take a moment to review our policies. By using this site, you agree to our 
+            <span id="consent-terms-link" class="internal-link">Terms & Conditions</span> and 
+            <span id="consent-privacy-link" class="internal-link">Privacy Policy</span>.
+          </p>
+          <div class="consent-modal-buttons">
+              <button id="accept-rules-btn">Accept Rules</button>
+              <button id="decline-rules-btn">Decline</button>
+          </div>
+        </div>
+    </div>
+
     <div id="terms-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn" id="close-terms">&times;</span>
@@ -627,13 +679,14 @@
 		<p>If you have any questions about these Terms, please contact me at adamleo376@gmail.com.</p>
       </div>
     </div>
+
     <div id="privacy-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn" id="close-privacy">&times;</span>
         <h2>Privacy Policy</h2>
 		<p><strong>IMPORTANT</strong></p>
 
-		<p>Adam Zibran ("I", "we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data when you visit our portfolio website ("Site"). Please read this policy carefully. </p>
+		<p>Adam Zibran ("I", "we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data when you visit our portfolio website ("Site"). Please read this policy carefully. </p> 
 
 		<p><strong>1. Information We Collect</strong></p>
 		<p>We may collect personal information that you voluntarily provide to us through the contact form, such as:</p>
@@ -692,6 +745,7 @@
     <script>
         // Script untuk MODAL POP-UP akan berjalan setelah struktur HTML siap.
         document.addEventListener('DOMContentLoaded', function() {
+            // Existing Modals
             const termsModal = document.getElementById('terms-modal');
             const privacyModal = document.getElementById('privacy-modal');
             const termsLink = document.getElementById('terms-link');
@@ -699,6 +753,41 @@
             const closeTermsBtn = document.getElementById('close-terms');
             const closePrivacyBtn = document.getElementById('close-privacy');
 
+            // New Consent Modal
+            const consentModal = document.getElementById('consent-modal');
+            const acceptBtn = document.getElementById('accept-rules-btn');
+            const declineBtn = document.getElementById('decline-rules-btn');
+            const consentTermsLink = document.getElementById('consent-terms-link');
+            const consentPrivacyLink = document.getElementById('consent-privacy-link');
+
+            // --- Logic for Consent Modal ---
+            if(acceptBtn) {
+                acceptBtn.onclick = function() {
+                    consentModal.style.display = "none";
+                }
+            }
+
+            if(declineBtn) {
+                declineBtn.onclick = function() {
+                    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                }
+            }
+            
+            // Open Terms/Privacy from within the consent modal
+            if(consentTermsLink) {
+                consentTermsLink.onclick = function() {
+                    termsModal.style.display = "block";
+                }
+            }
+            
+            if(consentPrivacyLink) {
+                consentPrivacyLink.onclick = function() {
+                    privacyModal.style.display = "block";
+                }
+            }
+
+
+            // --- Logic for Footer and other links ---
             if(termsLink) {
                 termsLink.onclick = function(e) {
                   e.preventDefault();
@@ -725,6 +814,7 @@
                 }
             }
 
+            // Close modal if clicked outside of the content
             window.onclick = function(event) {
               if (event.target == termsModal) {
                 termsModal.style.display = "none";
@@ -732,6 +822,7 @@
               if (event.target == privacyModal) {
                 privacyModal.style.display = "none";
               }
+              // We don't close the consent modal on outside click to ensure user interaction
             }
         });
     </script>
