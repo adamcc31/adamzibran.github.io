@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Zibran | Music Showcase</title>
+	<meta name="description" content="Koleksi lagu dan komposisi musik oleh Adam Zibran.">
+	<link rel="apple-touch-icon" href="img/logo/iconic.png">
+	<link rel="icon" href="img/logo/iconic.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .nicolas_sm_music_player_section {
+            padding: 230px 0 120px 0;
+            background-color: #171818;
+        }
+
+        .music-player-container {
+            background-color: #111212;
+            border: 1px solid #2f3030;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 60px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .music-player-container .cover-art img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .music-player-container .player-details {
+            width: 100%;
+        }
+
+        .player-details .song-info h3 {
+            font-size: 36px;
+            color: #ffa60c;
+            margin-bottom: 5px;
+        }
+
+        .player-details .song-info p {
+            font-size: 18px;
+            color: #959595;
+            margin-bottom: 20px;
+        }
+
+        .player-details .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #2f3030;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .player-details .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #ffbd4a;
+            border-radius: 4px;
+            transition: width 0.1s linear;
+        }
+        
+        .player-details .time-stamps {
+            display: flex;
+            justify-content: space-between;
+            color: #959595;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .player-details .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .player-details .controls button {
+            background: none;
+            border: 1px solid #2f3030;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s ease;
+        }
+        
+        .player-details .controls button:hover {
+            background-color: #ffbd4a;
+            border-color: #ffbd4a;
+        }
+
+        .player-details .controls button img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1); 
+        }
+        
+        .player-details .controls button:hover img {
+             filter: none; 
+        }
+
+        #play-pause-btn {
+            background-color: #ffbd4a;
+            border-color: #ffbd4a;
+        }
+        #play-pause-btn img {
+            filter: none;
+        }
+
+        /* Playlist Styling */
+        .playlist-container h2,
+        .band-profile-container h2,
+        .author-info-container h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 60px;
+            color: #ffa60c;
+            border-bottom: 1px solid #2f3030;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .band-profile-container,
+        .author-info-container {
+            margin-top: 80px;
+        }
+
+        .playlist ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .playlist .playlist-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #2f3030;
+            cursor: pointer;
+            transition: background-color .3s ease;
+        }
+        
+        .playlist .playlist-item:hover {
+            background-color: rgba(255, 189, 74, 0.1);
+        }
+
+        .playlist-item.active {
+            background-color: rgba(255, 189, 74, 0.2);
+        }
+
+        .playlist-item .song-cover img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        
+        .playlist-item .song-details h4 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .playlist-item .song-details p {
+            font-size: 16px;
+            color: #959595;
+        }
+
+        /* Band Profile Styling */
+        .band-profile-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .band-profile-content .band-photo {
+            flex-shrink: 0;
+        }
+
+        .band-profile-content .band-photo img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid #2f3030;
+        }
+        
+        .band-profile-content .band-info h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .band-profile-content .band-info p {
+            color: #959595;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .author-info-container .author-text p {
+             color: #959595;
+            line-height: 1.7;
+            font-size: 18px;
+            text-align: center;
+        }
+
+
+        /* Responsive */
+        @media(max-width: 768px){
+            .nicolas_sm_music_player_section { padding: 150px 0 60px 0; }
+            .music-player-container { flex-direction: column; padding: 25px; }
+            .music-player-container .cover-art img { width: 100%; height: auto; max-width: 250px;}
+            .player-details .song-info h3 { font-size: 28px; text-align: center; }
+            .player-details .song-info p { text-align: center; }
+            .player-details .controls { justify-content: center; }
+            
+            .playlist-container h2,
+            .band-profile-container h2,
+            .author-info-container h2 { font-size: 48px; }
+
+            .band-profile-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .band-profile-content .band-photo img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+            }
+            .band-profile-content .band-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+  
+  	<div id="preloader">
+		<div class="loader_line"></div>
+	</div>
+	<div class="nicolas_sm_wrapper_all" data-magic-cursor="show">
+	
+		<div class="nicolas_sm_header">
+			<div class="overlay_el">
+				<div class="overlay_bg">
+					<div class="overlay_img"></div>
+					<div class="overlay_color"></div>
+				</div>
+				<div class="overlay_content">
+					<div class="logo">
+						<a href="index.html"><img src="img/logo/logo.png" alt="logo"></a>
+					</div>
+					<div class="menu">
+						<ul>
+							<li><a href="index.html#home">Home</a></li>
+							<li><a href="index.html#about">About</a></li>
+							<li><a href="index.html#service">Skills</a></li>
+							<li><a href="index.html#portfolio">Portfolio</a></li>
+							<li><a href="index.html#blog">Showcase</a></li>
+							<li><a href="index.html#footer">Contact</a></li>
+						</ul>
+					</div>
+					<div class="button">
+						<a href="index.html#footer">Let's talk <img src="img/header/arrow.png" alt="arrow"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        <div class="nicolas_sm_music_player_section">
+            <div class="container">
+                <div class="nicolas_sm_page_title" style="margin: 0 auto 80px auto;">
+                    <h3 class="stroke_text">My Music</h3>
+                    <h3>Showcase</h3>
+                </div>
+
+                <div class="extra_container">
+                    <div class="music-player-container">
+                        <div class="cover-art">
+                            <img id="current-cover" src="img/covers/default.jpg" alt="Song Cover">
+                        </div>
+                        <div class="player-details">
+                            <div class="song-info">
+                                <h3 id="current-title">Pilih Lagu</h3>
+                                <p id="current-artist">Dari daftar di bawah</p>
+                            </div>
+                            <div class="progress-container" id="progress-container">
+                                <div class="progress-bar" id="progress-bar"></div>
+                            </div>
+                            <div class="time-stamps">
+                                <span id="current-time">0:00</span>
+                                <span id="duration">0:00</span>
+                            </div>
+                            <div class="controls">
+                                <button id="prev-btn"><img src="img/svg/prev.svg" alt="Previous"></button>
+                                <button id="play-pause-btn"><img src="img/svg/play.svg" alt="Play"></button>
+                                <button id="next-btn"><img src="img/svg/next.svg" alt="Next"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="playlist-container">
+                        <h2>PLAYLIST</h2>
+                        <div class="playlist">
+                            <ul id="playlist-ul">
+                                </ul>
+                        </div>
+                    </div>
+
+                    <div class="band-profile-container">
+                        <h2>Band Profile</h2>
+                        <div class="band-profile-content">
+                            <div class="band-photo">
+                                <img src="img/awards/windbreaker2.png" alt="Foto Band WIND BREAKER">
+                            </div>
+                            <div class="band-info">
+                                <h3>About WIND BREAKER</h3>
+                                <p>
+                                    WIND BREAKER is a southern metal band formed in Nottingham, England. Known for their explosive stage energy and sarcastic lyrics about Christianity, they combine heavy guitar riffs with haunting melodies to create a unique and powerful sound.
+                                </p>
+                                <h3>Inspiration & Background</h3>
+                                <p>
+                                    Inspired by metal giants such as As I Lay Dying and Killswitch Engage, as well as the melodic touches of post-hardcore bands, WIND BREAKER tells stories of internal struggles, resilience, and hope. Their music is cathartic, both for the band members and their listeners.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="author-info-container">
+                        <h2>Author & Lyricist</h2>
+                        <div class="author-text">
+                            <p>
+                                All songs featured here were composed and written entirely by Adam Zibran. With a deep passion for musical composition and lyric writing, each piece is a reflection of his personal artistic vision, brought to life through collaboration with the musicians of WIND BREAKER.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+		<div class="nicolas_sm_section">
+			<div class="nicolas_sm_copyright">
+				<div class="container">
+					<div class="extra_container">
+						<div class="copyright_in">
+							<div class="left">
+								<p>2024 - All Rights Reserved</p>
+							</div>
+							<div class="right">
+								<a href="#">Terms & Condition </a><span>/ </span><a href="#">Privacy Policy</a>
+							</div>
+						</div>
+						<div class="nicolas_sm_totop">
+							<img class="sm_svg" src="img/svg/down_arrow.svg" alt="1">
+							<a class="nicolas_sm_full_link" href="#"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mouse-cursor cursor-outer"></div>
+		<div class="mouse-cursor cursor-inner"></div>
+		</div>
+    
+    <audio id="audio-player"></audio>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/init.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioPlayer = document.getElementById('audio-player');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playPauseIcon = playPauseBtn.querySelector('img');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            const progressBar = document.getElementById('progress-bar');
+            const progressContainer = document.getElementById('progress-container');
+            const currentTimeEl = document.getElementById('current-time');
+            const durationEl = document.getElementById('duration');
+
+            const currentCover = document.getElementById('current-cover');
+            const currentTitle = document.getElementById('current-title');
+            const currentArtist = document.getElementById('current-artist');
+            const playlistUl = document.getElementById('playlist-ul');
+
+            const playlist = [
+                {
+                    title: "Ashes of the Blessed",
+                    artist: "WIND BREAKER",
+                    cover: "img/covers/RULER OF THE ASHEN DAWN.jpeg",
+                    src: "audio/Ashes of the Blessed.mp3"
+                },
+                {
+                    title: "Executioner’s Tax (Pay in Blood)",
+                    artist: "WIND BREAKER",
+                    cover: "img/covers/Executioner’s Tax (Pay in Blood).jpeg",
+                    src: "audio/Executioner’s Tax (Pay in Blood).mp3"
+                },
+                {
+                    title: "Vultures of the Ozarks",
+                    artist: "WIND BREAKER",
+                    cover: "img/covers/Vultures of the Ozarks.jpeg",
+                    src: "audio/Vultures of the Ozarks.mp3"
+                }
+            ];
+
+            let songIndex = 0;
+            let isPlaying = false;
+
+            function generatePlaylist() {
+                playlistUl.innerHTML = "";
+                playlist.forEach((song, index) => {
+                    const li = document.createElement('li');
+                    li.classList.add('playlist-item');
+                    li.dataset.index = index;
+                    li.innerHTML = `
+                        <div class="song-cover">
+                            <img src="${song.cover}" alt="${song.title}">
+                        </div>
+                        <div class="song-details">
+                            <h4>${song.title}</h4>
+                            <p>${song.artist}</p>
+                        </div>
+                    `;
+                    playlistUl.appendChild(li);
+                });
+            }
+
+            function loadSong(song) {
+                currentTitle.textContent = song.title;
+                currentArtist.textContent = song.artist;
+                currentCover.src = song.cover;
+                audioPlayer.src = song.src;
+            }
+
+            function playSong() {
+                isPlaying = true;
+                playPauseIcon.src = 'img/svg/pause.svg';
+                audioPlayer.play();
+                updateActivePlaylistItem();
+            }
+
+            function pauseSong() {
+                isPlaying = false;
+                playPauseIcon.src = 'img/svg/play.svg';
+                audioPlayer.pause();
+            }
+
+            function prevSong() {
+                songIndex--;
+                if (songIndex < 0) {
+                    songIndex = playlist.length - 1;
+                }
+                loadSong(playlist[songIndex]);
+                playSong();
+            }
+
+            function nextSong() {
+                songIndex++;
+                if (songIndex > playlist.length - 1) {
+                    songIndex = 0;
+                }
+                loadSong(playlist[songIndex]);
+                playSong();
+            }
+            
+            function updateProgress(e) {
+                const { duration, currentTime } = e.srcElement;
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                durationEl.textContent = formatTime(duration);
+                currentTimeEl.textContent = formatTime(currentTime);
+            }
+
+            function setProgress(e) {
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audioPlayer.duration;
+                audioPlayer.currentTime = (clickX / width) * duration;
+            }
+            
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return "0:00";
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            function updateActivePlaylistItem() {
+                document.querySelectorAll('.playlist-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                const activeItem = document.querySelector(`.playlist-item[data-index="${songIndex}"]`);
+                if(activeItem) {
+                    activeItem.classList.add('active');
+                }
+            }
+
+            playPauseBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    pauseSong();
+                } else {
+                    playSong();
+                }
+            });
+
+            prevBtn.addEventListener('click', prevSong);
+            nextBtn.addEventListener('click', nextSong);
+            audioPlayer.addEventListener('timeupdate', updateProgress);
+            audioPlayer.addEventListener('ended', nextSong);
+            progressContainer.addEventListener('click', setProgress);
+
+            playlistUl.addEventListener('click', (e) => {
+                const clickedItem = e.target.closest('.playlist-item');
+                if (clickedItem) {
+                    songIndex = parseInt(clickedItem.dataset.index);
+                    loadSong(playlist[songIndex]);
+                    playSong();
+                }
+            });
+
+            generatePlaylist();
+            loadSong(playlist[songIndex]);
+        });
+    </script>
+</body>
+</html>
