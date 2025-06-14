@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/plugins.css">
     <link rel="stylesheet" href="css/style.css">
 
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
     <style>
         .modal {
             display: none; position: fixed; z-index: 9999; left: 0; top: 0;
@@ -530,13 +532,7 @@
 									<input type="hidden" name="access_key" value="15f8a064-9dd5-4580-b713-6c1e9a1c3415">
 									<input type="hidden" name="subject" value="New Contact Form Submission from Portfolio">
 									<input type="hidden" name="from_name" value="My Portfolio Website">
-									<input type="hidden" name="redirect" value="https://adamzibran.site/terima-kasih.html"> <div class="error_box" id="empty-form">
-										<p>Please Fill Required Fields</p>
-									</div>
-									<div class="success_box" id="success_mail">
-										<p>Your message has been sent. We will contact you as soon as possible.</p>
-									</div>
-
+									<input type="hidden" name="redirect" value="https://adamzibran.site/terima-kasih.html">
 									<ul>
 										<li>
 											<input type="text" placeholder="Name" name="contact_name" class="cf-form-control" required/>
@@ -552,7 +548,8 @@
 										</li>
 										<li>
 											<select name="contact_subject" class="cf-form-control my_select_two" required>
-												<option value="">Choose Service</option> <option value="Social Media Manager">Social Media Manager</option>
+												<option value="">Choose Service</option>
+												<option value="Social Media Manager">Social Media Manager</option>
 												<option value="Product Development">Product Development</option>
 												<option value="Freelance Editor">Freelance Editor</option>
 												<option value="Product Design">Product Design</option>
@@ -561,12 +558,8 @@
 										<li id="text-area-w">
 											<textarea placeholder="Message" name="contact_message" class="cf-form-control" required></textarea>
 										</li>
-										<li id="enter_code">
-											<span id="txtCaptchaSpan"></span>
-											<input type="text" class="cf-form-control" name="contact_question" id="txtInput" autocomplete="off" placeholder="Please Enter Code *" required>
-											<input type="hidden" id="txtCaptcha">
-										</li>
 									</ul>
+									<div class="cf-turnstile" data-sitekey="0x4AAAAAABhC3EmwGm20CSMJ" data-theme="light"></div>
 									<div class="nicolas_sm_button">
 										<button type="submit">Submit <img src="img/header/arrow.png" alt="arrow"></button>
 									</div>
@@ -703,64 +696,6 @@
     <script src="js/init.js"></script>
     
     <script>
-        // --- SCRIPT UNTUK CAPTCHA GENERATION & MODAL POP-UP ---
-
-        // Fungsi untuk membuat teks CAPTCHA (tidak ada perubahan)
-        function generateCaptchaText(length) {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let captcha = '';
-            for (let i = 0; i < length; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return captcha;
-        }
-
-        // Fungsi untuk menampilkan CAPTCHA (tidak ada perubahan)
-        function generateCaptcha() {
-            try {
-                const captchaText = generateCaptchaText(6);
-                document.getElementById('txtCaptcha').value = captchaText;
-                const captchaSpan = document.getElementById('txtCaptchaSpan');
-                captchaSpan.innerHTML = '';
-                for (let i = 0; i < captchaText.length; i++) {
-                    const charSpan = document.createElement('span');
-                    charSpan.innerText = captchaText[i];
-                    charSpan.style.color = getRandomColor();
-                    if (Math.random() > 0.5) {
-                        charSpan.style.transform = 'rotate(' + (Math.random() * 20 - 10) + 'deg)';
-                    }
-                    captchaSpan.appendChild(charSpan);
-                    if (Math.random() > 0.5) {
-                        captchaSpan.appendChild(document.createTextNode(' '));
-                    }
-                }
-            } catch (e) {
-                console.log("Elemen CAPTCHA tidak ditemukan, mungkin berada di halaman lain.");
-            }
-        }
-
-        // Fungsi untuk warna acak (tidak ada perubahan)
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-        
-        // CATATAN PENTING:
-        // Fungsi validateCaptcha() sengaja saya hapus. Template Anda sudah punya
-        // file 'contact.form.js' yang menangani validasi, termasuk CAPTCHA.
-        // Fungsi validasi manual Anda bentrok dengan sistem bawaan template.
-        // Dengan menghapusnya, validasi CAPTCHA akan berfungsi sesuai desain template
-        // (menampilkan pesan error di kotak merah, bukan pop-up 'alert').
-
-        // Menjalankan fungsi generateCaptcha setelah semua elemen halaman dimuat.
-        // Menggunakan addEventListener lebih aman daripada "window.onload =".
-        window.addEventListener('load', generateCaptcha);
-
-
         // Script untuk MODAL POP-UP akan berjalan setelah struktur HTML siap.
         document.addEventListener('DOMContentLoaded', function() {
             const termsModal = document.getElementById('terms-modal');
