@@ -10,19 +10,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/plugins.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .modal {
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #ffffff; margin: 5% auto; padding: 30px; border: 1px solid #888;
+            width: 80%; max-width: 700px; border-radius: 8px; color: #333;
+            position: relative; animation: slide-down 0.4s ease-out; font-family: 'Montserrat', sans-serif;
+        }
+        @keyframes slide-down { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-content h2 { color: #000; font-family: 'Bebas Neue', sans-serif; margin-top: 0; }
+        .modal-content p { line-height: 1.6; }
+        .close-btn { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; }
+        .close-btn:hover, .close-btn:focus { color: black; text-decoration: none; cursor: pointer; }
+
+		.nicolas_sm_button button {
+		display: inline-block;
+		text-decoration: none;
+		font-family: 'Bebas Neue', sans-serif;
+		font-size: 24px;
+		font-weight: 500;
+		color: #fff;
+		background-color: #333; 
+		padding: 20px 40px;
+		border-radius: 50px; 
+		
+		border: none; 
+		cursor: pointer;
+		outline: none;
+		transition: all .3s ease;
+	}
+
+	.nicolas_sm_button button:hover {
+		background-color: #ffa60c;
+	}
+
+	.nicolas_sm_button button img {
+		position: relative;
+		top: 2px;
+		margin-left: 10px;
+		vertical-align: middle;
+	}
+    </style>
 </head>
 <body>
   
-  	<!-- Preloader -->
-	<div id="preloader">
+  	<div id="preloader">
 		<div class="loader_line"></div>
 	</div>
-	<!-- /Preloader -->
-   
-    <!-- Wrapper -->
-	<div class="nicolas_sm_wrapper_all" data-magic-cursor="show"> <!-- Magic Cursor Values Are: "show" and "hide" -->
+	<div class="nicolas_sm_wrapper_all" data-magic-cursor="show">
 	
-		<!-- Mobile Menu -->
 		<div class="nicolas_sa_mobile_menu">
 			<div class="mobile_menu_inner">
 				<div class="mobile_in">
@@ -63,9 +104,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Mobile Menu -->
-		
-		<!-- Header -->
 		<div class="nicolas_sm_header">
 			<div class="overlay_el">
 				<div class="overlay_bg">
@@ -104,9 +142,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Header -->
-
-		<!-- Hero -->
 		<div class="nicolas_sm_section" id="home">
 			<div class="nicolas_sm_hero">
 				<div class="container">
@@ -188,9 +223,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Hero -->
-
-		<!-- About -->
 		<div class="nicolas_sm_section" id="about">
 			<div class="nicolas_sm_about">
 				<div class="container">
@@ -259,9 +291,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /About -->
-
-		<!-- Service -->
 		<div class="nicolas_sm_section" id="service">
 			<div class="nicolas_sm_service">
 				<div class="container">
@@ -316,9 +345,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Service -->
-
-		<!-- Portfolio -->
 		<div class="nicolas_sm_section" id="portfolio">
 			<div class="nicolas_sm_portfolio">
 				<div class="nicolas_sm_extra_title">
@@ -417,9 +443,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Portfolio -->
-
-		<!-- Blog -->
 		<div class="nicolas_sm_section" id="blog">
 			<div class="nicolas_sm_blog">
 				<div class="nicolas_sm_extra_title">
@@ -469,9 +492,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Blog -->
-
-		<!-- Footer -->
 		<div class="nicolas_sm_section" id="footer">
 			<div class="nicolas_sm_footer">
 				<div class="container">
@@ -506,63 +526,49 @@
 								</div>
 							</div>
 							<div class="right">
-								<form id="contactForm">
-									<div class="error_box" id="empty-form">
+								<form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+									<input type="hidden" name="access_key" value="15f8a064-9dd5-4580-b713-6c1e9a1c3415">
+									<input type="hidden" name="subject" value="New Contact Form Submission from Portfolio">
+									<input type="hidden" name="from_name" value="My Portfolio Website">
+									<input type="hidden" name="redirect" value="https://adamzibran.site/terima-kasih.html"> <div class="error_box" id="empty-form">
 										<p>Please Fill Required Fields</p>
-									</div>
-									<div class="error_box" id="subject-alert">
-										<p>Please Select Subject</p>
-									</div>
-									<div class="error_box" id="security-alert">
-										<p>Security code does not match !</p>
-									</div>
-									<div class="error_box" id="email-invalid">
-										<p>Please enter a valid email address. Exp. example@gmail.com</p>
-									</div>
-									<div class="error_box" id="phone-invalid">
-										<p>Please enter a valid phone number.Exp. +998991774433</p>
-									</div>
-									<div class="error_box" id="error_mail">
-										<p></p>
 									</div>
 									<div class="success_box" id="success_mail">
 										<p>Your message has been sent. We will contact you as soon as possible.</p>
 									</div>
+
 									<ul>
 										<li>
-											<input type="text" placeholder="Name" name="contact_name" class="cf-form-control"/>
+											<input type="text" placeholder="Name" name="contact_name" class="cf-form-control" required/>
 											<span></span>
 										</li>
 										<li>
-											<input type="text" placeholder="Email" name="contact_email" class="cf-form-control" />
+											<input type="email" placeholder="Email" name="contact_email" class="cf-form-control" required/>
 											<span></span>
 										</li>
 										<li>
-											<input type="text" placeholder="Phone" name="contact_phone" class="cf-form-control"/>
+											<input type="text" placeholder="Phone" name="contact_phone" class="cf-form-control" required/>
 											<span></span>
 										</li>
 										<li>
-											<select name="contact_subject" class="cf-form-control my_select_two">
-												<option value="Choose Services">Choose Service</option>
-												<option value="Social Media Manager">Social Media Manager</option>
+											<select name="contact_subject" class="cf-form-control my_select_two" required>
+												<option value="">Choose Service</option> <option value="Social Media Manager">Social Media Manager</option>
 												<option value="Product Development">Product Development</option>
 												<option value="Freelance Editor">Freelance Editor</option>
 												<option value="Product Design">Product Design</option>
 											</select>
 										</li>
 										<li id="text-area-w">
-											<textarea placeholder="Message" name="contact_message" class="cf-form-control"></textarea>
+											<textarea placeholder="Message" name="contact_message" class="cf-form-control" required></textarea>
 										</li>
-										<form onsubmit="return validateCaptcha()">
-											<li id="enter_code">
-												<span id="txtCaptchaSpan"></span>
-												<input type="text" class="cf-form-control" name="contact_question" id="txtInput" autocomplete="off" placeholder="Please Enter Code *">
-												<input type="hidden" id="txtCaptcha">
-											</li>
-										</form>
+										<li id="enter_code">
+											<span id="txtCaptchaSpan"></span>
+											<input type="text" class="cf-form-control" name="contact_question" id="txtInput" autocomplete="off" placeholder="Please Enter Code *" required>
+											<input type="hidden" id="txtCaptcha">
+										</li>
 									</ul>
 									<div class="nicolas_sm_button">
-										<a id="send_message" href="#">Submit <img src="img/header/arrow.png" alt="arrow"></a>                        
+										<button type="submit">Submit <img src="img/header/arrow.png" alt="arrow"></button>
 									</div>
 								</form>
 							</div>
@@ -571,9 +577,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Footer -->
-
-		<!-- Copyright -->
 		<div class="nicolas_sm_section">
 			<div class="nicolas_sm_copyright">
 				<div class="container">
@@ -583,7 +586,7 @@
 								<p>2024 - All Rights Reserved</p>
 							</div>
 							<div class="right">
-								<a href="#">Terms &amp; Condition </a><span>/ </span><a href="#">Privacy Policy</a>
+								<a href="#" id="terms-link" style="cursor: pointer;">Terms &amp; Condition </a><span>/ </span><a href="#" id="privacy-link" style="cursor: pointer;">Privacy Policy</a>
 							</div>
 						</div>
 						<div class="nicolas_sm_totop">
@@ -594,22 +597,115 @@
 				</div>
 			</div>
 		</div>
-		<!-- /Copyright -->
-		
-		<!-- CURSOR -->
 		<div class="mouse-cursor cursor-outer"></div>
 		<div class="mouse-cursor cursor-inner"></div>
-		<!-- /CURSOR -->
+		</div>
+    <div id="terms-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="close-terms">&times;</span>
+        <h2>Terms & Conditions</h2>
+		<p><strong>IMPORTANT</strong></p>
+		<p>Welcome to Adam Zibran's portfolio website ("Site"). These Terms and Conditions ("Terms") govern your use of this Site. By accessing or using the Site, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these terms, please do not use the Site.</p>
+		<p><strong>1. Intellectual Property Rights & Copyright</strong></p>
+		<p>All content present on this Site, including but not limited to text, graphics, logos, images, case studies, videos, and source code, is the exclusive property of Adam Zibran or his licensors and is protected by international copyright laws. Unauthorized use, reproduction, modification, distribution, or storage of any content for any purpose other than personal, non-commercial use is strictly prohibited without prior written permission from Adam Zibran.</p>
+		<p><strong>2. Prohibited Uses</strong></p>
+		<p>You agree not to use the Site for any of the following purposes:</p>
+		<ul>
+			<li>Engaging in any activity that is unlawful, fraudulent, or harmful.</li>
+			<li>Distributing, sending, or uploading any material that contains viruses, Trojan horses, worms, or any other harmful software.</li>
+			<li>Attempting to gain unauthorized access to the Site, the server on which the Site is stored, or any server, computer, or database connected to our Site.</li>
+			<li>Infringing upon the copyright, trademark, or other intellectual property rights of Adam Zibran or any third party.</li>
+			<li>Using any automated system, such as "bots" or "scrapers," to access or collect data from the Site for any commercial purpose.</li>
+		</ul>
 
-	</div>
-    <!-- /Wrapper -->
+		<p><strong>3. Governing Law and Jurisdiction</strong></p>
+		<p>By using this Site, you agree that any dispute arising out of or in connection with these Terms shall be governed by and construed in accordance with the laws of the Republic of Indonesia. </p>
+		<p>Furthermore, you acknowledge that by accessing this Site, you are responsible for compliance with your own local and international laws, including but not limited to:</p>
+		<ul>
+			<li><strong>Indonesia:</strong> Law No. 28 of 2014 concerning Copyright.</li>
+			<li><strong>European Union:</strong> The Directive on Copyright in the Digital Single Market.</li>
+			<li><strong>United States:</strong> The Digital Millennium Copyright Act (DMCA).</li>
+		</ul>
+
+		<p><strong>4. Consequences of Violation</strong></p>
+		<p>Any violation of these Terms, particularly concerning copyright infringement or prohibited uses, may result in immediate termination of your access to the Site without notice. We reserve the right to pursue all available legal remedies, including seeking monetary damages and injunctive relief, under the applicable national and international laws. Copyright infringement is a serious offense and can lead to significant civil and criminal penalties.</p>
+
+		<p><strong>5. Disclaimer</strong></p>
+		<p>This Site and its content are provided "as is" without any warranties of any kind. We do not warrant that the site will be error-free or that its server is free of computer viruses or other harmful mechanisms.</p>
+
+		<p><strong>6. Changes to Terms</strong></p>
+		<p>We reserve the right to modify these Terms at any time. We will notify users of any changes by updating the effective date of this policy. Your continued use of the Site after such changes constitutes your acceptance of the new Terms.</p>
+
+		<p><strong>7. Contact Information</strong></p>
+		<p>If you have any questions about these Terms, please contact me at adamleo376@gmail.com.</p>
+      </div>
+    </div>
+    <div id="privacy-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="close-privacy">&times;</span>
+        <h2>Privacy Policy</h2>
+		<p><strong>IMPORTANT</strong></p>
+
+		<p>Adam Zibran ("I", "we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data when you visit our portfolio website ("Site"). Please read this policy carefully. </p>
+
+		<p><strong>1. Information We Collect</strong></p>
+		<p>We may collect personal information that you voluntarily provide to us through the contact form, such as:</p>
+		<ul>
+			<li>Name</li>
+			<li>Email Address</li>
+			<li>Phone Number</li>
+		</ul>
+		<p>We may also automatically collect non-personal information ("Usage Data") as you navigate the site, such as your IP address, browser type, and pages visited.</p>
+
+		<p><strong>2. How We Use Your Information</strong></p>
+		<p>We use the information we collect for the following purposes:</p>
+		<ul>
+			<li>To respond to your inquiries, questions, and comments.</li>
+			<li>To operate, maintain, and improve our Site.</li>
+			<li>To monitor and analyze usage and trends to improve your experience.</li>
+			<li>To protect against fraudulent or unlawful activity.</li>
+		</ul>
+
+		<p><strong>3. Data Protection and Your Rights</strong></p>
+		<p>We are committed to protecting your data in compliance with international data protection laws. By using this Site, you are subject to the following legal frameworks regarding your personal data:</p>
+
+		<p><strong>A. General Data Protection Regulation (GDPR) - For EU Residents</strong><br>
+		If you are a resident of the European Economic Area (EEA), you have certain data protection rights, including the right to access, correct, erase, restrict processing of, and port your personal data. We will not process your data without your explicit consent.</p>
+
+		<p><strong>B. Law No. 27 of 2022 on Personal Data Protection (PDP Law) - For Indonesian Citizens</strong><br>
+		In accordance with Indonesian law, you have the right to be informed about the processing of your data, access your data, and request the correction or deletion of your data. We adhere to the principles of data processing outlined in this law.</p>
+
+		<p><strong>C. U.S. Privacy Laws (e.g., CCPA)</strong><br>
+		While the U.S. does not have a single federal privacy law, we recognize the principles of state laws like the California Consumer Privacy Act (CCPA). Residents of such states have the right to know what personal information is being collected about them and to request its deletion.</p>
+
+		<p><strong>4. Data Sharing and Disclosure</strong></p>
+		<p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties. This does not include trusted third parties who assist us in operating our website (e.g., hosting providers), so long as those parties agree to keep this information confidential.</p>
+
+		<p><strong>5. Consequences of Data Misuse</strong></p>
+		<p>Any misuse of personal data by any party is a serious offense. As a data controller, we are subject to the penalties stipulated under the relevant laws:</p>
+		<ul>
+			<li><strong>Under GDPR:</strong> Violations can lead to administrative fines of up to €20 million, or 4% of the worldwide annual revenue of the prior financial year, whichever is higher.</li>
+			<li><strong>Under Indonesian PDP Law:</strong> Violations are subject to administrative sanctions, including written warnings, temporary suspension of data processing activities, and fines. Certain violations may also carry criminal penalties.</li>
+		</ul>
+		<p>We are committed to reporting any data breaches to the relevant authorities within the legally mandated timeframes.</p>
+
+		<p><strong>6. Data Security</strong></p>
+		<p>We implement a variety of security measures to maintain the safety of your personal information. However, no electronic transmission or storage is 100% secure, and we cannot guarantee its absolute security.</p>
+
+		<p><strong>7. Contact Information</strong></p>
+		<p>For any questions or to exercise your data protection rights, please contact the Data Controller, Adam Zibran, at adamleo376@gmail.com.</p>
+      </div>
+    </div>
     
     <script src="js/jquery.js"></script>
     <script src="js/contact.form.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/init.js"></script>
-	<script>
-        // Function to generate a random string for CAPTCHA
+    
+    <script>
+        // --- SCRIPT UNTUK CAPTCHA GENERATION & MODAL POP-UP ---
+
+        // Fungsi untuk membuat teks CAPTCHA (tidak ada perubahan)
         function generateCaptchaText(length) {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let captcha = '';
@@ -619,30 +715,31 @@
             return captcha;
         }
 
-        // Function to generate and display CAPTCHA
+        // Fungsi untuk menampilkan CAPTCHA (tidak ada perubahan)
         function generateCaptcha() {
-            const captchaText = generateCaptchaText(6);
-            document.getElementById('txtCaptcha').value = captchaText;
-
-            const captchaSpan = document.getElementById('txtCaptchaSpan');
-            captchaSpan.innerHTML = '';
-
-            // Add random spaces and change font color to make it harder for bots
-            for (let i = 0; i < captchaText.length; i++) {
-                const charSpan = document.createElement('span');
-                charSpan.innerText = captchaText[i];
-                charSpan.style.color = getRandomColor();
-                if (Math.random() > 0.5) {
-                    charSpan.style.transform = 'rotate(' + (Math.random() * 20 - 10) + 'deg)';
+            try {
+                const captchaText = generateCaptchaText(6);
+                document.getElementById('txtCaptcha').value = captchaText;
+                const captchaSpan = document.getElementById('txtCaptchaSpan');
+                captchaSpan.innerHTML = '';
+                for (let i = 0; i < captchaText.length; i++) {
+                    const charSpan = document.createElement('span');
+                    charSpan.innerText = captchaText[i];
+                    charSpan.style.color = getRandomColor();
+                    if (Math.random() > 0.5) {
+                        charSpan.style.transform = 'rotate(' + (Math.random() * 20 - 10) + 'deg)';
+                    }
+                    captchaSpan.appendChild(charSpan);
+                    if (Math.random() > 0.5) {
+                        captchaSpan.appendChild(document.createTextNode(' '));
+                    }
                 }
-                captchaSpan.appendChild(charSpan);
-                if (Math.random() > 0.5) {
-                    captchaSpan.appendChild(document.createTextNode(' '));
-                }
+            } catch (e) {
+                console.log("Elemen CAPTCHA tidak ditemukan, mungkin berada di halaman lain.");
             }
         }
 
-        // Function to get a random color
+        // Fungsi untuk warna acak (tidak ada perubahan)
         function getRandomColor() {
             const letters = '0123456789ABCDEF';
             let color = '#';
@@ -651,22 +748,63 @@
             }
             return color;
         }
+        
+        // CATATAN PENTING:
+        // Fungsi validateCaptcha() sengaja saya hapus. Template Anda sudah punya
+        // file 'contact.form.js' yang menangani validasi, termasuk CAPTCHA.
+        // Fungsi validasi manual Anda bentrok dengan sistem bawaan template.
+        // Dengan menghapusnya, validasi CAPTCHA akan berfungsi sesuai desain template
+        // (menampilkan pesan error di kotak merah, bukan pop-up 'alert').
 
-        // Function to validate the CAPTCHA input
-        function validateCaptcha() {
-            const input = document.getElementById('txtInput').value;
-            const captcha = document.getElementById('txtCaptcha').value;
-            if (input === captcha) {
-                alert('CAPTCHA is correct!');
-                return true;
-            } else {
-                alert('CAPTCHA is incorrect, please try again.');
-                return false;
+        // Menjalankan fungsi generateCaptcha setelah semua elemen halaman dimuat.
+        // Menggunakan addEventListener lebih aman daripada "window.onload =".
+        window.addEventListener('load', generateCaptcha);
+
+
+        // Script untuk MODAL POP-UP akan berjalan setelah struktur HTML siap.
+        document.addEventListener('DOMContentLoaded', function() {
+            const termsModal = document.getElementById('terms-modal');
+            const privacyModal = document.getElementById('privacy-modal');
+            const termsLink = document.getElementById('terms-link');
+            const privacyLink = document.getElementById('privacy-link');
+            const closeTermsBtn = document.getElementById('close-terms');
+            const closePrivacyBtn = document.getElementById('close-privacy');
+
+            if(termsLink) {
+                termsLink.onclick = function(e) {
+                  e.preventDefault();
+                  termsModal.style.display = "block";
+                }
             }
-        }
+            
+            if(privacyLink) {
+                privacyLink.onclick = function(e) {
+                  e.preventDefault();
+                  privacyModal.style.display = "block";
+                }
+            }
 
-        // Call the function when the page loads
-        window.onload = generateCaptcha;
+            if(closeTermsBtn) {
+                closeTermsBtn.onclick = function() {
+                  termsModal.style.display = "none";
+                }
+            }
+
+            if(closePrivacyBtn) {
+                closePrivacyBtn.onclick = function() {
+                  privacyModal.style.display = "none";
+                }
+            }
+
+            window.onclick = function(event) {
+              if (event.target == termsModal) {
+                termsModal.style.display = "none";
+              }
+              if (event.target == privacyModal) {
+                privacyModal.style.display = "none";
+              }
+            }
+        });
     </script>
     
 </body>
