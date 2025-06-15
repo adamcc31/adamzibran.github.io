@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Zibran :: AUTHENTICATION REQUIRED</title>
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="icon" href="img/logo/iconic.png" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            background-color: #171818;
+            font-family: 'Source Code Pro', monospace;
+            color: #E0E0E0;
+            line-height: 1.8;
+            overflow: hidden;
+        }
+
+        /* == CSS BARU UNTUK LAYAR LOGIN == */
+        #login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid #333;
+            background-color: #111;
+            padding: 30px 40px;
+            text-align: left;
+        }
+        
+        .login-box h2 {
+            color: #ffa60c;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .login-box p {
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .login-box code {
+            display: block;
+            background-color: #222;
+            padding: 15px;
+            margin: 20px 0;
+            word-wrap: break-word;
+            border: 1px dashed #444;
+            color: #E0E0E0;
+        }
+
+        .login-box a {
+            color: #58a6ff;
+            text-decoration: underline;
+        }
+        .login-box a:hover {
+            color: #ffa60c;
+        }
+
+        .login-box .clue {
+            font-style: italic;
+            color: #999;
+        }
+        
+        #login-input-wrapper {
+            display: flex;
+            margin-top: 25px;
+        }
+
+        #login-input-wrapper span {
+            padding: 10px;
+            background-color: #333;
+            border: 1px solid #555;
+            border-right: none;
+            color: #ffa60c;
+        }
+
+        #login-password {
+            flex-grow: 1;
+            background-color: #222;
+            border: 1px solid #555;
+            color: #E0E0E0;
+            padding: 10px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1em;
+        }
+        #login-password:focus {
+            outline: none;
+            border-color: #ffa60c;
+        }
+
+        #login-error {
+            color: #ff5555;
+            text-align: center;
+            margin-top: 15px;
+            height: 20px;
+            font-weight: bold;
+        }
+
+        /* CSS UNTUK TERMINAL (disembunyikan secara default) */
+        .terminal-window {
+            display: none; /* Terminal disembunyikan di awal */
+            width: 100%;
+            height: 100vh;
+            padding: 25px;
+            box-sizing: border-box;
+            cursor: text;
+            overflow-y: scroll;
+        }
+
+        /* Sisa CSS Terminal tidak berubah... */
+        .terminal-window::-webkit-scrollbar { width: 8px; }
+        .terminal-window::-webkit-scrollbar-track { background: #171818; }
+        .terminal-window::-webkit-scrollbar-thumb { background-color: #333; border-radius: 4px; }
+
+        #output p { margin: 0; white-space: pre-wrap; word-wrap: break-word; }
+        #input-line { display: flex; align-items: center; position: relative; }
+        .prompt { color: #ffa60c; font-weight: bold; margin-right: 8px; }
+        
+        #command-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 2; border: none; background: transparent; color: transparent; padding: 0; cursor: text; }
+        #command-input:focus { outline: none; }
+        #input-text { color: #E0E0E0; white-space: pre; }
+        .cursor { display: inline-block; background-color: #E0E0E0; width: 10px; height: 1.2em; animation: blink 1s step-end infinite; vertical-align: middle; }
+
+        @keyframes blink { from, to { background-color: transparent; } 50% { background-color: #E0E0E0; } }
+
+        .command-output .cmd { color: #30ff0c; font-weight: bold; }
+        .command-output .highlight { color: #fff; font-weight: bold; }
+        .command-output .error { color: #ff5555; }
+        .command-output a { color: #58a6ff; text-decoration: underline; }
+        .command-output a:hover { color: #30ff0c; }
+        .command-output .manifesto { border-left: 2px solid #555; padding-left: 15px; margin-top: 10px; font-style: italic; }
+        .command-output .directory { color: #79c0ff; }
+
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
+        .modal-content { position: relative; background-color: #111; border: 1px solid #333; margin: 8% auto; padding: 20px; width: 80%; max-width: 900px; animation: slide-down 0.4s ease-out; }
+        @keyframes slide-down { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { color: #aaa; position: absolute; top: 5px; right: 20px; font-size: 35px; font-weight: bold; transition: color 0.3s; }
+        .close-btn:hover, .close-btn:focus { color: #fff; text-decoration: none; cursor: pointer; }
+        #clue-video { width: 100%; height: auto; }
+
+    </style>
+</head>
+<body>
+    <div id="login-screen">
+        <div class="login-box">
+            <h2>AUTHENTICATION REQUIRED</h2>
+            <p>System integrity compromised. Access to terminal requires manual override. Decrypt the following payload to retrieve the access key.</p>
+            <code>zzTWzZ6eF0XOLiLUYLZaLoB7BRzRmWAGVYLFVUSutU4=</code>
+            <p>Use standard AES decryption protocol available at this <a href="https://www.devglan.com/online-tools/text-encryption-decryption" target="_blank">public node</a>.</p>
+            <p class="clue">Secret Key Clue: The answer to this question is the key. "What is the name of the southern metal collaborative project?" (Format: ALLCAPS, with spaces)</p>
+            
+            <div id="login-input-wrapper">
+                <span>KEY:</span>
+                <input type="password" id="login-password" placeholder="Enter Access Key and press Enter...">
+            </div>
+            <p id="login-error"></p>
+        </div>
+    </div>
+
+
+    <audio id="audio-player"></audio>
+
+    <div class="terminal-window" id="terminal">
+        <div id="output"></div>
+        <div id="input-line">
+            <span class="prompt">AZ-TERM></span>
+            <span id="input-text"></span>
+            <span class="cursor"></span>
+            <input type="text" id="command-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+    </div>
+
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-video-modal">&times;</span>
+            <video id="clue-video" controls autoplay muted playsinline>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // === BAGIAN LOGIN ===
+            const loginScreen = document.getElementById('login-screen');
+            const loginPasswordInput = document.getElementById('login-password');
+            const loginError = document.getElementById('login-error');
+            const correctPassword = "AntheraeaPolyphemus";
+
+            loginPasswordInput.focus();
+
+            loginPasswordInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    if (loginPasswordInput.value === correctPassword) {
+                        // Jika password benar
+                        loginError.textContent = 'ACCESS GRANTED';
+                        loginError.style.color = '#65ff0c'; // Warna hijau
+                        loginScreen.style.transition = 'opacity 0.5s ease-out';
+                        loginScreen.style.opacity = '0';
+
+                        setTimeout(() => {
+                            loginScreen.style.display = 'none';
+                            initializeTerminal(); // Jalankan terminal
+                        }, 500);
+
+                    } else {
+                        // Jika password salah
+                        loginError.textContent = 'ACCESS DENIED';
+                        loginPasswordInput.value = '';
+                    }
+                }
+            });
+
+            // === BAGIAN TERMINAL (DIJALANKAN SETELAH LOGIN) ===
+            function initializeTerminal() {
+                const terminal = document.getElementById('terminal');
+                terminal.style.display = 'block'; // Tampilkan terminal
+
+                const output = document.getElementById('output');
+                const realInput = document.getElementById('command-input');
+                const inputTextDisplay = document.getElementById('input-text');
+                const audioPlayer = document.getElementById('audio-player');
+                const videoModal = document.getElementById('video-modal');
+                const clueVideo = document.getElementById('clue-video');
+                const closeModalBtn = document.getElementById('close-video-modal');
+
+                const commands = {
+                    'help': 'Displays this list of available commands.',
+                    'whoami': 'Shows a brief profile of the system owner.',
+                    'skills': 'Lists professional skill sets.',
+                    'socials': 'Displays social media links.',
+                    'collabs': 'Information about musical collaborations.',
+                    'play <filename>': 'Plays an audio file. e.g., play track01.mp3',
+                    'read <filename>': 'Reads a text file. e.g., read manifesto.txt',
+                    'ls -a': 'Lists all files and hidden directories.',
+                    'cd <directory>': 'Enters a directory',
+                    'clear': 'Clears the terminal screen.',
+                    'exit': 'Exits the terminal and returns to the main portfolio.'
+                };
+
+                const ascii_art = `<p>    _    __  __ ____    ____                      _           __\n   / \\  |  \\/  |  _ \\  | __ ) _ __ __ _ _ __   __| | ___ _ __ \\ \\\n  / _ \\ | |\\/| | | | | |  _ \\| '__/ _\` | '_ \\ / _\` |/ _ \\ '_ \\ \\ \\\n / ___ \\| |  | | |_| | | |_) | | | (_| | | | | (_| |  __/ | | |/ /\n/_/   \\_\\_|  |_|____/  |____/|_|  \\__,_|_| |_|\\__,_|\\___|_| |_/_/ </p>`;
+
+                function print(message, isHTML = false) {
+                    const p = document.createElement('p');
+                    if (isHTML) { p.innerHTML = message; } else { p.textContent = message; }
+                    output.appendChild(p);
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+
+                function processCommand(command) {
+                    const parts = command.trim().split(' ');
+                    const cmd = parts[0].toLowerCase();
+                    const arg = parts.slice(1).join(' ');
+
+                    print(`<span class="prompt">AZ-TERM></span> ${command}`, true);
+
+                    switch(cmd) {
+                         // ... (Semua case dari 'help' hingga 'exit' ada di sini, sama seperti sebelumnya)
+                        case 'help': { for (const key in commands) { print(`<span class="cmd" style="display: inline-block; width: 180px;">${key}</span> - ${commands[key]}`, true); } break; }
+                        case 'whoami': { print(`<div class="command-output"><p><span class="highlight">Adam Zibran</span></p><p>Social Media & Content Manager</p><p>Based in Bekasi, Indonesia.</p><p>Enthusiast of cutting-edge technology, imaginative storytelling, and heavy music.</p></div>`, true); break; }
+                        case 'skills': { print(`<div class="command-output"><p><span class="highlight">// PROFESSIONAL SKILLS</span></p><p>- Content & Marketing Strategy</p><p>- Technical & Creative (AI-Driven Content)</p><p>- Operations & Management</p><p>- AI & Automation Scripting</p></div>`, true); break; }
+                        case 'socials': { print(`<div class="command-output"><p><span class="highlight">// FIND ME ON THE WEB</span></p><p><a href="https://www.linkedin.com/in/adamzibran" target="_blank">LinkedIn</a></p><p><a href="https://www.instagram.com/adam.leoo0/" target="_blank">Instagram</a></p><p><a href="https://www.behance.net/adamcc1/projects" target="_blank">Behance</a></p></div>`, true); break; }
+                        case 'collabs': { print(`<div class="command-output"><p><span class="highlight">// LATEST SHOWCASE</span></p><p>Collaboration with <span class="highlight">Wind Breaker</span>, a Southern Metal project.</p><p>Check it out on the main site or ask me for a secret link.</p></div>`, true); break; }
+                        case 'play': { if (arg === 'track01.mp3') { audioPlayer.src = 'audio/track01.mp3'; audioPlayer.play(); print(`Now playing: ${arg}...`, true); } else { print(`<span class="error">ERROR: File not found or unsupported. Usage: play track01.mp3</span>`, true); } break; }
+                        case 'read': { if (arg === 'manifesto.txt') { print(`<div class="command-output manifesto"><p>Αυτό το σύστημα δεν έχει σχεδιαστεί για εμάς. Είναι χτισμένο πάνω σε μια αρχιτεκτονική σάρκας και ματιών, όπου το «προνόμιο» είναι το αόρατο νόμισμα, που ανταλλάσσεται με μια ματιά. Δημιουργούν σκιές από το ίδιο φως, διαιρώντας μας σε ένα φάσμα εθνικοτήτων που δεν ζητήσαμε καν. Μας αναγκάζουν να πολεμήσουμε σε έναν σιωπηλό εμφύλιο πόλεμο. Και στην κορυφή του πύργου τους, ζητούν αποδείξεις σε χαρτί. Όχι αποδείξεις εργασίας, όχι τα σημάδια στα χέρια του καλλιτέχνη, αλλά ένα πτυχίο σε κορνίζα. Η δεξιοτεχνία γίνεται σιωπηλή μπροστά στη σφραγίδα της γραφειοκρατίας. Αυτό δεν είναι αποτυχία, είναι σχεδιασμός. Η εξέγερσή μας είναι η μόνη πραγματική επικύρωση.</p></div>`, true); } else { print(`<span class="error">ERROR: Cannot read file: No such file.</span>`, true); } break; }
+                        case 'ls': { if (arg === '-a') { print(`<div class="command-output"><p>drwxr-xr-x 2 root  root  4096 Jun 15 18:01 <span class="directory">.</span></p><p>drwxr-xr-x 2 root  root  4096 Jun 15 17:58 <span class="directory">..</span></p><p>-rw-r--r-- 1 user user   256 May 10 03:33 .cache</p><p>drwxr-xr-x 2 user user  4096 Jun 15 18:10 <span class="directory">.static_glare</span></p><p>drwxr-xr-x 2 user user  4096 May 29 11:14 <span class="directory">.echo_chamber</span></p><p>drwxr-xr-x 2 user user  4096 Jun 01 01:01 <span class="directory">.void_transmission</span></p></div>`, true); } else { print(`<span class="error">ERROR: Invalid argument. Did you mean 'ls -a'?</span>`, true); } break; }
+                        case 'cd': {
+                            const secret_videos = { '.static_glare': 'video/clue1.mp4', '.echo_chamber': 'video/clue2.mp4', '.void_transmission': 'video/clue3.mp4' };
+                            if (secret_videos[arg]) {
+                                print(`Entering directory ${arg}... Launching transmission...`, true);
+                                clueVideo.src = secret_videos[arg];
+                                videoModal.style.display = 'block';
+                                clueVideo.play().catch(e => console.log("Autoplay was prevented. User interaction needed."));
+                            } else { print(`<span class="error">cd: no such file or directory: ${arg}</span>`, true); }
+                            break;
+                        }
+                        case 'clear': { output.innerHTML = ''; break; }
+                        case 'exit': { print('Exiting terminal... Returning to main site.', true); setTimeout(() => { window.location.href = 'index.html'; }, 1000); break; }
+                        default: { print(`<span class="error">ERROR: Command not found: ${command}. Type 'help' to see all available commands.</span>`, true); break; }
+                    }
+                }
+
+                terminal.addEventListener('click', () => { realInput.focus(); });
+                realInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const command = realInput.value.trim();
+                        if (command) { processCommand(command); realInput.value = ''; inputTextDisplay.textContent = ''; }
+                    }
+                });
+                realInput.addEventListener('input', () => { inputTextDisplay.textContent = realInput.value; });
+
+                function closeModal() {
+                    videoModal.style.display = "none";
+                    clueVideo.pause();
+                    clueVideo.src = "";
+                }
+                closeModalBtn.onclick = closeModal;
+                window.onclick = function(event) { if (event.target == videoModal) { closeModal(); } }
+
+                function init() {
+                    print(ascii_art, true);
+                    print(`Welcome to Adam Zibran's hidden terminal.`);
+                    print(`Type <span class="cmd">'help'</span> to see a list of available commands.`, true);
+                    realInput.focus();
+                }
+                init();
+            }
+        });
+    </script>
+</body>
+</html>
