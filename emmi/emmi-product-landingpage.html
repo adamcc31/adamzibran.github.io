@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmi Swiss Premium Yogurt - Digital Provenance</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <nav class="header-nav-left">
+                <a href="#" class="nav-link"><i class="fas fa-globe"></i> EMMI GROUP</a>
+                <a href="#" class="nav-link">EN</a>
+                <a href="#" class="nav-link">LOGIN</a>
+                <a href="#" class="nav-link basket-link">BASKET (0)</a>
+                <a href="#" class="nav-link search-icon"><i class="fas fa-search"></i></a>
+            </nav>
+            <div class="header-logo-right">
+                <img src="img/emmi-logo.svg" alt="Emmi Group Logo" class="emmi-group-logo">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="product-hero">
+            <div class="container">
+                <img src="img/yogurt-hero.png" alt="Emmi Swiss Premium Yogurt Strawberry" class="product-image fade-in-element">
+                <h1 class="product-title fade-in-element">Swiss Premium Yogurt</h1>
+                <p class="product-variant fade-in-element">Strawberry</p>
+                
+                <div class="flavor-gallery fade-in-element">
+                    <div class="flavor-item active" data-flavor="Strawberry">
+                        <img src="img/flavor-strawberry.png" alt="Strawberry Flavor">
+                        <span>Strawberry</span>
+                    </div>
+                    <div class="flavor-item" data-flavor="Peach">
+                        <img src="img/flavor-peach.png" alt="Peach Flavor">
+                        <span>Peach</span>
+                    </div>
+                    <div class="flavor-item" data-flavor="Blueberry">
+                        <img src="img/flavor-blueberry.png" alt="Blueberry Flavor">
+                        <span>Blueberry</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="provenance" class="content-section">
+            <div class="container">
+                <h2 class="fade-in-element">Our Commitment to Quality</h2>
+                <p class="section-subtitle fade-in-element">A tangible representation of our commitment to transparency, sustainability, and animal welfare in every step.</p>
+                <div class="provenance-grid">
+                    <div class="provenance-item fade-in-element">
+                        <h4>Sustainably Sourced Milk</h4>
+                        <p>Sourced exclusively from family-owned farms in Fribourg, Switzerland, where cows graze on lush Alpine pastures. Our partner farms are certified for sustainable practices and the highest standards of animal welfare.</p>
+                        <div id="map"></div>
+                    </div>
+                    <div class="provenance-item fade-in-element">
+                        <h4>Batch & Production Date</h4>
+                        <p><strong>Batch ID:</strong> CH-25-062025-A1<br><strong>Production Date:</strong> July 05, 2025<br>This code ensures complete traceability from the farm to your table, guaranteeing freshness and safety.</p>
+                    </div>
+                    <div class="provenance-item fade-in-element">
+                        <h4>Rigorous Quality Control</h4>
+                        <p>This batch successfully passed <strong>27 quality checkpoints</strong>, including tests for microbial purity, pH balance, and sensory evaluation, ensuring the signature creamy taste and texture of Emmi yogurt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="product-details" class="content-section">
+            <div class="container">
+                <h2 class="fade-in-element">Ingredients & Nutritional Values</h2>
+                <p class="section-subtitle fade-in-element">Crafted with simple, high-quality ingredients that reflect our passion and craftsmanship in dairy excellence.</p>
+                <div class="details-grid">
+                    <div id="ingredients-section" class="details-subsection fade-in-element">
+                        <h3>Specific Name</h3>
+                        <p id="specific-name-text"></p>
+                        <h3>Net Quantity</h3>
+                        <p>450 g</p>
+                        <h3>Ingredients</h3>
+                        <p id="ingredients-text"></p>
+                    </div>
+                    <div id="nutrition-section" class="details-subsection fade-in-element">
+                        <h3>Nutritional values per 100g</h3>
+                        <table id="nutrition-table" class="nutrition-table">
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="serving-suggestion" class="content-section">
+            <div class="container">
+                <div class="serving-suggestion-content fade-in-element">
+                    <img id="serving-img" src="" alt="Saran Penyajian Yogurt">
+                    <div class="serving-text">
+                        <h2 id="serving-title"></h2>
+                        <p id="serving-desc"></p>
+                        <button id="recipe-button" class="cta-button-secondary">See Specific Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="other-products" class="content-section">
+            <div class="container">
+                <h2 class="fade-in-element">Explore Our Other Products</h2>
+                <p class="section-subtitle fade-in-element">From fresh cheeses to creamy desserts, discover the world of Emmi.</p>
+                <div class="product-slider-container fade-in-element">
+                    <div class="product-card">
+                        <img src="img/product_cheese.png" alt="Emmi Le Gruyère AOP">
+                        <h4>Le Gruyère AOP</h4>
+                        <p>A classic Swiss cheese, aged for a rich, nutty flavor.</p>
+                        <a href="#" class="cta-button-small">View Details</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="img/product_latte.png" alt="Emmi Caffè Latte">
+                        <h4>Caffè Latte</h4>
+                        <p>The perfect blend of fresh Swiss milk and rich espresso.</p>
+                        <a href="#" class="cta-button-small">View Details</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="img/product_dessert.png" alt="Emmi Dessert">
+                        <h4>Chocolate Mousse</h4>
+                        <p>A light and airy dessert made with real Swiss chocolate.</p>
+                        <a href="#" class="cta-button-small">View Details</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="img/product_fondue.png" alt="Emmi Fondue">
+                        <h4>Swiss Fondue</h4>
+                        <p>Ready-to-use fondue mix for an authentic Swiss experience.</p>
+                        <a href="#" class="cta-button-small">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="community-gallery" class="content-section">
+            <div class="container">
+                <h2 class="fade-in-element">#EmmiMoment Gallery</h2>
+                <p class="section-subtitle fade-in-element">See the best moments shared by our community. Be the next winner by sharing your photo with the hashtag #EmmiMoment on Instagram!</p>
+                
+                <div id="emmi-moment-gallery" class="fade-in-element">
+                    <div class="moment-card">
+                        <div class="winner-label winner-1st">1st Winner</div>
+                        <img src="img/customer-photo-1.png" alt="Emmi Moment photo by @andina_p">
+                        <div class="moment-caption">
+                            <h4>@andina_p</h4>
+                            <p>"My healthy breakfast before starting the day. The Strawberry yogurt is the best!"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="moment-card">
+                        <div class="winner-label winner-2nd">2nd Winner</div>
+                        <img src="img/customer-photo-2.png" alt="Emmi Moment photo by @budi_sanjaya">
+                        <div class="moment-caption">
+                            <h4>@budi_sanjaya</h4>
+                            <p>Making a smoothie bowl with Emmi Peach, perfect! #EmmiMoment"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="moment-card">
+                        <div class="winner-label winner-3rd">3rd Winner</div>
+                        <img src="img/customer-photo-3.png" alt="Emmi Moment photo by @citra_dewi">
+                        <div class="moment-caption">
+                            <h4>@citra_dewi</h4>
+                            <p>"Today's picnic essentials sponsored by Emmi Blueberry! #EmmiMoment"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-campaign-container fade-in-element">
+                    <div class="campaign-visual">
+                        <img src="img/emmimoment.png" alt="Share your #EmmiMoment">
+                    </div>
+                    <div class="campaign-text">
+                        <h3>Join the #EmmiMoment!</h3>
+                        <p>Share your best moment with an Emmi product on Instagram. Use the hashtag <strong>#EmmiMoment</strong> and tag our account <strong>@Emmi</strong> for a chance to win special prizes every month!</p>
+                        <a href="https://www.instagram.com/" target="_blank" class="cta-button-instagram">
+                            <i class="fab fa-instagram"></i> Post Your Moment
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2025 ADAM ZIBRAN & EMMI AG. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html>

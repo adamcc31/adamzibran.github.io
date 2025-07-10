@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Case Study: EMMI AG | Adam Zibran</title>
+	<meta name="description" content="Case study of the EMMI AG product QR code landing page project by Adam Zibran, detailing goals, technology, and outcomes.">
+	<link rel="apple-touch-icon" href="img/logo/iconic.png">
+	<link rel="icon" href="img/logo/iconic.png" type="image/png">
+	<link rel="canonical" href="https://adamzibran.site/project-emmi-ag" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .project-hero-section {
+            padding: 160px 0;
+            display: flex;
+            align-items: center;
+            min-height: 90vh; 
+        }
+        .project-hero-section .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            width: 100%;
+        }
+        
+        .project-hero-text {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .project-hero-text .category {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #ffbd4a;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .project-hero-text h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 100px;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+        .project-hero-text p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .project-hero-visual {
+            width: 55%;
+            perspective: 1500px;
+        }
+        .project-hero-visual img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: rotateY(-10deg) rotateX(3deg);
+            transition: transform 0.5s ease;
+        }
+        .project-hero-visual img:hover {
+            transform: rotateY(0) rotateX(0);
+        }
+        
+        .project-hero-text .hero-button a {
+            display: inline-block;
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #333;
+            padding: 20px 40px;
+            border-radius: 50px;
+            border: 2px solid #ffbd4a;
+            transition: all .3s ease;
+        }
+        .project-hero-text .hero-button a:hover {
+            background-color: #ffbd4a;
+            color: #171818;
+        }
+        
+        .nicolas_sm_portfolio_single .text.showcase-title {
+            text-align: center;
+        }
+        .nicolas_sm_portfolio_single .images ul {
+            justify-content: center;
+        }
+
+        .nicolas_sm_portfolio_single .single_list > ul {
+            display: flex;
+            width: 100%;
+            border: 1px solid #2f3030;
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 0;
+        }
+        .nicolas_sm_portfolio_single .single_list > ul > li {
+            flex: 1;
+            width: auto;
+            text-align: center;
+            padding: 30px 20px;
+            border: none;
+            border-right: 1px solid #2f3030;
+        }
+        .nicolas_sm_portfolio_single .single_list > ul > li:last-child {
+            border-right: none;
+        }
+
+        /* --- REVISED/ADDED STYLES --- */
+        .project-details-list {
+            margin-bottom: 80px;
+            justify-content: center;
+        }
+        .live-demo-link {
+            color: #ffbd4a;
+            text-decoration: none;
+            transition: color .3s ease;
+        }
+        .live-demo-link:hover {
+            color: #fff;
+        }
+        .project-overview-container {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        /* REVISI 2: Justify text */
+        .project-overview-text p {
+            text-align: justify;
+        }
+        /* REVISI 3: Image resizing */
+        .project-overview-text { flex: 1.5; } /* Give more space to text */
+        .project-overview-visual { flex: 1; } /* Give less space to image container */
+        .project-overview-visual img {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            max-width: 380px; /* Set a max width */
+            display: block;
+            margin: 0 auto; /* Center the image within its container */
+            border-radius: 10px;
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+        }
+        .project-goals-container {
+            display: flex;
+            gap: 40px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .goal-card {
+            flex: 1;
+            background-color: #1c1c1c;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #2f3030;
+        }
+        .goal-card .icon {
+            font-size: 40px;
+            color: #ffbd4a;
+            margin-bottom: 20px;
+        }
+        .goal-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .goal-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        .roadmap-card {
+            background-color: #1c1c1c;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #2f3030;
+            margin-bottom: 20px;
+        }
+        .roadmap-card h4 {
+             font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffbd4a;
+        }
+        .roadmap-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        /* --- END OF REVISED STYLES --- */
+        
+        @media(max-width: 1040px){
+            .project-hero-section .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .project-hero-text,
+            .project-hero-visual {
+                width: 100%;
+            }
+            .project-hero-visual {
+                margin-top: 50px;
+                perspective: none;
+            }
+            .project-hero-visual img {
+                 transform: none;
+            }
+            .project-hero-text h1 {
+                font-size: 80px;
+            }
+             .project-hero-section {
+                padding: 140px 20px 80px 20px;
+            }
+            /* --- REVISED/ADDED STYLES (Responsive) --- */
+            .project-overview-container { 
+                flex-direction: column; 
+                gap: 30px;
+            }
+            .project-goals-container { flex-direction: column; }
+             /* --- END OF REVISED STYLES --- */
+        }
+        @media(max-width: 768px){
+            .project-hero-text h1 { font-size: 60px; }
+        }
+    </style>
+</head>
+<body>
+  
+  	<div id="preloader">
+		<div class="loader_line"></div>
+	</div>
+	
+	<div class="nicolas_sm_wrapper_all" data-magic-cursor="show">
+	
+        <div class="nicolas_sa_mobile_menu">
+			<div class="mobile_menu_inner">
+				<div class="mobile_in">
+					<div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="" /></a></div>
+					<div class="trigger"><div class="hamburger hamburger--slider"><div class="hamburger-box"><div class="hamburger-inner"></div></div></div></div>
+				</div>
+			</div>
+			<div class="dropdown">
+				<div class="dropdown_inner">
+					<ul class="anchor_nav">
+						<li><a href="index.html#home">Home</a></li>
+						<li><a href="index.html#about">About</a></li>
+						<li><a href="index.html#service">Skills</a></li>
+						<li><a href="index.html#portfolio">Portfolio</a></li>
+						<li><a href="index.html#blog">Showcase</a></li>
+						<li><a href="index.html#footer">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="nicolas_sm_header">
+			<div class="overlay_el"><div class="overlay_bg"></div>
+				<div class="overlay_content">
+					<div class="logo anchor"><a href="index.html#home"><img src="img/logo/logo.png" alt="logo"></a></div>
+					<div class="menu">
+						<ul class="anchor_nav">
+							<li><a href="index.html#home">Home</a></li>
+							<li><a href="index.html#about">About</a></li>
+							<li><a href="index.html#service">Skills</a></li>
+							<li><a href="index.html#portfolio">Portfolio</a></li>
+							<li><a href="index.html#blog">Showcase</a></li>
+						</ul>
+					</div>
+					<div class="button anchor"><a href="index.html#footer">Let's talk <img src="img/header/arrow.png" alt="arrow"></a></div>
+				</div>
+			</div>
+		</div>
+        <div class="nicolas_sm_section" id="project-hero">
+            <div class="project-hero-section">
+                <div class="container">
+                    <div class="project-hero-text">
+                        <p class="category">Digital Strategy & Product Experience</p>
+                        <h1>EMMI AG Project</h1>
+                        <p>
+                           Transforming product packaging into a dynamic digital gateway. This project pioneers a direct-to-consumer channel via QR code, enriching the post-purchase experience and building unparalleled brand transparency.
+                        </p>
+                        <div class="hero-button">
+                            <a href="emmi/emmi-product-landingpage.html" target="_blank">View Live Demo</a>
+                        </div>
+                    </div>
+                    <div class="project-hero-visual">
+                        <img src="img/emmi/emmi-land.jpg" alt="3D Mockup of the EMMI AG Project Landing Page">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<div class="nicolas_sm_section" id="project-detail">
+			<div class="container">
+				<div class="nicolas_sm_portfolio_single">
+					<div class="extra_container">
+						<div class="single_list project-details-list">
+							<ul>
+								<li><h3>Client</h3><p>EMMI AG GROUP</p></li>
+								<li><h3>My Role</h3><p>Product Vision & Strategy</p></li>
+								<li><h3>Date</h3><p>June 2025</p></li>
+								<li><h3>Website</h3><a href="emmi/emmi-product-landingpage.html" target="_blank" class="live-demo-link">Live Demo</a></li>
+							</ul>
+						</div>
+
+						<div class="main_text">
+							<div class="text">
+								<h3>Project Overview</h3>
+                                <div class="project-overview-container">
+                                    <div class="project-overview-text">
+                                        <p>
+                                            This project began with the identification of opportunities to bridge the gap between EMMI's physical products and the digital experience of consumers in the modern era. Answer a key market challenge: how can a premium brand like EMMI AG deepen its connection with consumers in a digital-first world? My solution is a seamless digital bridge, initiated by a simple QR code scan on the product packaging.
+                                        </p>
+                                        <p>
+                                            This platform transforms a static physical product into an interactive storyteller. It grants consumers immediate access to the product's authentic "farm-to-table" journey, showcases EMMI's uncompromising quality standards, and enriches the user experience with recipes and serving suggestions. This isn't just a landing page; it's a new channel for building trust, fostering loyalty, and reinforcing EMMI's core values of craftsmanship and transparency.
+                                        </p>
+                                    </div>
+                                    <div class="project-overview-visual">
+                                        <img src="img/emmi/scans.png" alt="User Journey Diagram: Scan QR > Discover Product Story > Engage with Brand">
+                                    </div>
+                                </div>
+							</div>
+
+							<div class="text">
+								<h3>Project Goals</h3>
+                                <p>My primary objectives were to architect a digital touchpoint that delivers tangible value to both the consumer and the brand, strengthening their bond.</p>
+								
+                                <div class="project-goals-container">
+                                    <div class="goal-card">
+                                        <div class="icon"><i class="fas fa-link"></i></div>
+                                        <h4>Seamless User Journey</h4>
+                                        <p>To architect a frictionless transition from a physical product to a rich digital experience with a single scan.</p>
+                                    </div>
+                                    <div class="goal-card">
+                                        <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                                        <h4>Mobile-First Engagement</h4>
+                                        <p>To deliver a compelling, mobile-first narrative that presents product information in an elegant and easily digestible format.</p>
+                                    </div>
+                                    <div class="goal-card">
+                                        <div class="icon"><i class="fas fa-star"></i></div>
+                                        <h4>Enhance Brand Equity</h4>
+                                        <p>To reinforce EMMI AG's reputation for quality and innovation, measurably increasing engagement and consumer loyalty.</p>
+                                    </div>
+                                </div>
+							</div>
+                            
+                            <div class="text" style="padding-top: 30px;">
+								<h3>Technology Stack</h3>
+								<p>
+									I selected a modern web stack focused on performance, scalability, and an optimal user experience—all critical for a mobile-centric platform accessed via QR codes. The core technologies include: <strong>HTML5</strong> for semantic structure, <strong>CSS3 (Flexbox & Grid)</strong> for sophisticated and responsive layouts, and <strong>JavaScript (ES6+)</strong> for interactive elements. All assets were meticulously optimized to ensure rapid loading times on any network condition.
+								</p>
+							</div>
+
+                            <div class="text" style="padding-top: 50px;">
+                                <h3>Future Vision & Long-Term Development</h3>
+                                <p>This project was designed not as a one-off campaign, but as a scalable foundation (MVP) for a long-term digital strategy. My vision for its evolution includes:</p>
+
+                                <div class="roadmap-card">
+                                    <h4><i class="fas fa-chart-line"></i> Data Analytics & Consumer Insights</h4>
+                                    <p>Integrate analytics to track QR scan data (e.g., location, time, product type). This provides EMMI with invaluable, first-party data on consumer behavior to inform marketing and product strategy.</p>
+                                </div>
+                                <div class="roadmap-card">
+                                    <h4><i class="fas fa-magic"></i> Personalization Engine</h4>
+                                    <p>Develop logic to serve personalized content. For example, a user scanning a cheese product in the morning might see a breakfast recipe, while a user in a different country could receive content in their local language.</p>
+                                </div>
+                                <div class="roadmap-card">
+                                    <h4><i class="fas fa-shopping-cart"></i> E-commerce & Retailer Integration</h4>
+                                    <p>Incorporate a "Buy Now" or "Find a Retailer" feature, using geolocation to direct consumers to the nearest point of sale, directly driving revenue and closing the loop from discovery to purchase.</p>
+                                </div>
+                                <div class="roadmap-card">
+                                    <h4><i class="fas fa-trophy"></i> Loyalty & Gamification</h4>
+                                    <p>Build a loyalty program where customers can collect points or unlock exclusive content by scanning different EMMI products, fostering repeat purchases and building a community of brand advocates.</p>
+                                </div>
+                            </div>
+						</div>
+						
+						<div class="main_text" style="padding-top: 50px;">
+                            <div class="text bottom showcase-title">
+								<h3>Visual Showcase</h3>
+								<p>A responsive and performant landing page design across all devices.</p>
+							</div>
+							<div class="images">
+								<ul>
+									<li><div class="list_inner"><img src="img/emmi/emmi.png" alt="Desktop view of the landing page"></div></li>
+									<li><div class="list_inner"><img src="img/emmi/MID.png" alt="Mobile view of the landing page"></div></li>
+									<li><div class="list_inner"><img src="img/emmi/qr.png" alt="Example of the QR code on product packaging"></div></li>
+								</ul>
+							</div>
+						</div>
+						
+						<div class="prev_next">
+							<a href="index.html#portfolio" class="prev"><img class="sm_svg" src="img/svg/down_arrow.svg" alt="prev"><span>Back to Portfolio</span></a>
+							<a href="#" class="next"><span>Next Project</span><img class="sm_svg" src="img/svg/down_arrow.svg" alt="next"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div class="nicolas_sm_section">
+			<div class="nicolas_sm_copyright"><div class="container"><div class="extra_container">
+				<div class="copyright_in"><div class="left"><p>2024 - All Rights Reserved</p></div><div class="right"><p>Developed by Adam Zibran</p></div></div>
+				<div class="nicolas_sm_totop"><img class="sm_svg" src="img/svg/down_arrow.svg" alt="1"><a class="nicolas_sm_full_link" href="#"></a></div>
+			</div></div></div>
+		</div>
+		<div class="mouse-cursor cursor-outer"></div>
+		<div class="mouse-cursor cursor-inner"></div>
+	</div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/init.js"></script>
+</body>
+</html>
